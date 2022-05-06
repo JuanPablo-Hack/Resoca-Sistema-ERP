@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,20 +281,20 @@ session_start();
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="../assets/lib/jquery/jquery.min.js"></script>
 
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="lib/jquery.sparkline.js"></script>
+  <script src="../assets/ib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="../assets/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="../assets/lib/jquery.scrollTo.min.js"></script>
+  <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="../assets/lib/jquery.sparkline.js"></script>
   <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
-  <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="lib/gritter-conf.js"></script>
+  <script src="../assets/lib/common-scripts.js"></script>
+  <script type="text/javascript" src="../assets/lib/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="../assets/lib/gritter-conf.js"></script>
   <!--script for this page-->
-  <script src="lib/sparkline-chart.js"></script>
-  <script src="lib/zabuto_calendar.js"></script>
+  <script src="../assets/lib/sparkline-chart.js"></script>
+  <script src="../assets/lib/zabuto_calendar.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
@@ -305,7 +303,7 @@ session_start();
         // (string | mandatory) the text inside the notification
         text: 'Tratamos de brindarte el mejor servicio por eso te damos estas opciones.',
         // (string | optional) the image to display on the left
-        image: 'img/banner.png',
+        image: '../assets/img/banner.png',
         // (bool | optional) if you want it to fade out on its own or just sit there
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out

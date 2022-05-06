@@ -1,6 +1,7 @@
 <?php
 include 'php/conexion.php';
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,57 +24,46 @@ session_start();
                 <thead>
                   <tr>
                     <th>Folio</th>
-                    <th>Cliente</th>
+                    <th>Cantidad</th>
                     <th class="hidden-phone">Fecha</th>
                     <th class="hidden-phone">Tipo Servicio</th>
-                    <th class="hidden-phone">Estado</th>
+                    <th class="hidden-phone">Encargado</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  if (isset($_SESSION['user'])) {
-                    $id = $_SESSION['user'];
-                    $sql = "SELECT * FROM ordenes WHERE cliente = '$id'";
-                    $resultado = $conexion->query($sql);
-                    while ($mostrar = mysqli_fetch_array($resultado)) {
+                  $id = $_SESSION['usuario'];
+                  $sql = "SELECT * FROM ordenes WHERE cliente=$id";
+                  $resultado = $conexion->query($sql);
+                  while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
-                      <tr>
+                    <tr>
 
-                        <td><?php echo '97/22-' . $mostrar['id'] ?></td>
-                        <td><?php
-
-
-                            $sql1 = "SELECT * FROM clientes WHERE id='" . $mostrar['cliente'] . "'";
-                            $result1 = mysqli_query($conexion, $sql1);
-                            if ($Row = mysqli_fetch_array($result1)) {
-                              $nombre = $Row['nombre'];
-                            }
-                            echo $nombre;
-                            ?></td>
-                        <td><?php echo $mostrar['fecha'] ?></td>
-                        <td><?php
+                      <td><?php echo '97/22-' . $mostrar['id'] ?></td>
+                      <td><?php echo $mostrar['cantidad'] ?></td>
+                      <td><?php echo $mostrar['fecha'] ?></td>
+                      <td><?php
 
 
-                            $sql1 = "SELECT * FROM servicios WHERE id='" . $mostrar['servicio'] . "'";
-                            $result1 = mysqli_query($conexion, $sql1);
-                            if ($Row = mysqli_fetch_array($result1)) {
-                              $nombre = $Row['nombre'];
-                            }
-                            echo $nombre;
-                            ?></td>
-                        <td><?php echo $mostrar['estado'] ?></td>
-                        <td>
-                          <a onclick="crearPDF(<?php echo $mostrar['id']; ?>)" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
+                          $sql1 = "SELECT * FROM servicios WHERE id='" . $mostrar['servicio'] . "'";
+                          $result1 = mysqli_query($conexion, $sql1);
+                          if ($Row = mysqli_fetch_array($result1)) {
+                            $nombre = $Row['nombre'];
+                          }
+                          echo $nombre;
+                          ?></td>
+                      <td><?php echo $mostrar['encargado'] ?></td>
+                      <td>
+                        <a onclick="crearPDF(<?php echo $mostrar['id']; ?>)" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
 
 
 
 
 
-                        </td>
-                      </tr>
+                      </td>
+                    </tr>
                   <?php
-                    }
                   }
                   ?>
                 </tbody>
@@ -89,16 +79,16 @@ session_start();
     <?php include 'templates/footer.php'; ?>
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="lib/advanced-datatable/js/DT_bootstrap.js"></script>
+  <script src="../assets/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.js"></script>
+  <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="../assets/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="../assets/lib/jquery.scrollTo.min.js"></script>
+  <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
+  <script src="../assets/lib/common-scripts.js"></script>
   <!--script for this page-->
   <!-- PDF -->
 

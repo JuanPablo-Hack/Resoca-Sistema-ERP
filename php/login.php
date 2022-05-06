@@ -8,21 +8,21 @@ function login($conexion, $user, $password)
     $resultado = $conexion->query($sql);
     if ($row = mysqli_fetch_assoc($resultado)) {
         header("HTTP/1.1 302 Moved Temporarily");
-        header("Location: ../Admin/index.php");
+        header("Location: ../Admin/");
     } else {
         $sql = "SELECT * FROM trabajador WHERE user='$user' and pwd='$password'";
         $resultado = $conexion->query($sql);
         if ($row = mysqli_fetch_assoc($resultado)) {
             $_SESSION['usuario'] = $row['id'];
             header("HTTP/1.1 302 Moved Temporarily");
-            header("Location: ../Trabajdor/index.php");
+            header("Location: ../Trabajador/");
         } else {
             $sql = "SELECT * FROM clientes WHERE user='$user' and pwd='$password'";
             $resultado = $conexion->query($sql);
             if ($row = mysqli_fetch_assoc($resultado)) {
                 $_SESSION['usuario'] = $row['id'];
                 header("HTTP/1.1 302 Moved Temporarily");
-                header("Location: ../Cliente/index.php");
+                header("Location: ../Cliente/");
             } else {
                 echo "No tiene usuario";
             }

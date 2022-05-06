@@ -36,30 +36,27 @@ include 'php/conexion.php';
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
                     <tr>
-
-                      <td><?php echo 'FSO-22-' . $mostrar['id'] ?></td>
-                      <td><?php
-
-
-                          $sql1 = "SELECT * FROM clientes WHERE id='" . $mostrar['cliente'] . "'";
-                          $result1 = mysqli_query($conexion, $sql1);
-                          if ($Row = mysqli_fetch_array($result1)) {
-                            $nombre = $Row['nombre'];
-                          }
-                          echo $nombre;
-                          ?></td>
+                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-22-' . $mostrar['id'] ?></a></td>
+                      <td><a href="./detalles_cliente.php?id_cliente=<?php echo $mostrar['cliente']  ?>"><?php
+                                                                                                          $sql1 = "SELECT * FROM clientes WHERE id='" . $mostrar['cliente'] . "'";
+                                                                                                          $result1 = mysqli_query($conexion, $sql1);
+                                                                                                          if ($Row = mysqli_fetch_array($result1)) {
+                                                                                                            $nombre = $Row['nombre'];
+                                                                                                          }
+                                                                                                          echo $nombre;
+                                                                                                          ?></a></td>
                       <td><?php echo $mostrar['fecha'] ?></td>
-                      <td><?php
+                      <td><a href="./detalles_servicio.php?id_cliente=<?php echo $mostrar['servicio']  ?>"><?php
 
 
-                          $sql1 = "SELECT * FROM servicios WHERE id='" . $mostrar['servicio'] . "'";
-                          $result1 = mysqli_query($conexion, $sql1);
-                          if ($Row = mysqli_fetch_array($result1)) {
-                            $nombre = $Row['nombre'];
-                          }
-                          echo $nombre;
-                          ?></td>
-                      <td><?php echo $mostrar['estado'] ?></td>
+                                                                                                            $sql1 = "SELECT * FROM servicios WHERE id='" . $mostrar['servicio'] . "'";
+                                                                                                            $result1 = mysqli_query($conexion, $sql1);
+                                                                                                            if ($Row = mysqli_fetch_array($result1)) {
+                                                                                                              $nombre = $Row['nombre'];
+                                                                                                            }
+                                                                                                            echo $nombre;
+                                                                                                            ?></td>
+                      <td><?php echo $mostrar['estado'] ?></a></td>
                       <td>
 
 
