@@ -24,7 +24,7 @@ $result2 = mysqli_query($conexion, $sql2);
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <form action="php/crear_orden.php" class="form-horizontal style-form" method='POST'>
+              <form class="form-horizontal style-form" id="Form_Orden" enctype="multipart/form-data" method="post">
                 <h3>Datos del Servicio</h3>
                 <hr>
                 <div class="form-group">
@@ -137,7 +137,7 @@ $result2 = mysqli_query($conexion, $sql2);
                 </div>
                 <div class="form-group">
                   <div class="col-lg-offset-2 col-lg-10">
-                    <button class="btn btn-theme" type="submit">Guardar</button>
+                    <button class="btn btn-theme" type="submit">Crear Orden</button>
                     <a href="listar_orden.php" class="btn btn-theme04" type="button">Cancelar</a>
                   </div>
                 </div>
@@ -184,6 +184,9 @@ $result2 = mysqli_query($conexion, $sql2);
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/controller.js"></script>
 
 </body>
 

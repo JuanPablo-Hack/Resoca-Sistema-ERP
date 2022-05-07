@@ -24,7 +24,7 @@ function login($conexion, $user, $password)
                 header("HTTP/1.1 302 Moved Temporarily");
                 header("Location: ../Cliente/");
             } else {
-                echo "No tiene usuario";
+                header("Location: ../error_login.html");
             }
         }
     }

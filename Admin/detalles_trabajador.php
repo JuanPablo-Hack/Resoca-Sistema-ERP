@@ -1,3 +1,11 @@
+<?php
+$id = $_GET['id_trabajador'];
+include 'php/conexion.php';
+$sql = "SELECT * FROM trabajador WHERE id='" . $id . "'";
+$result = mysqli_query($conexion, $sql);
+$Row = mysqli_fetch_array($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +18,7 @@
         <?php include 'templates/nav.php'; ?>
         <section id="main-content">
             <section class="wrapper">
-                <h3><i class="fa fa-angle-right"></i> Alta de Trabajadores</h3>
+                <h3><i class="fa fa-angle-right"></i> Detalles de Trabajador</h3>
                 <div class="row mt">
                     <div class="col-lg-12">
                         <div class="form-panel">
@@ -19,55 +27,31 @@
                                     <div class="form-group ">
                                         <label for="firstname" class="control-label col-lg-2">Nombre Completo</label>
                                         <div class="col-lg-10">
-                                            <input class=" form-control" id="firstname" name="nombre" type="text" />
+                                            <input class=" form-control" id="firstname" name="nombre" type="text" value="<?php echo $Row['nombre']; ?>" readonly />
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="lastname" class="control-label col-lg-2">CURP</label>
                                         <div class="col-lg-10">
-                                            <input class=" form-control" id="lastname" name="curp" type="text" />
+                                            <input class=" form-control" id="lastname" name="curp" type="text" value="<?php echo $Row['curp']; ?>" readonly />
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="username" class="control-label col-lg-2">RFC</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control " id="username" name="rfc" type="text" />
+                                            <input class="form-control " id="username" name="rfc" type="text" value="<?php echo $Row['rfc']; ?>" readonly />
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="username" class="control-label col-lg-2">NSS</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control " id="username" name="nss" type="text" />
+                                            <input class="form-control " id="username" name="nss" type="text" value="<?php echo $Row['nss']; ?>" readonly />
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="username" class="control-label col-lg-2">Cargo</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control " id="username" name="cargo" type="text" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="username" class="control-label col-lg-2">Usuario</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="username" name="user" type="text" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="password" class="control-label col-lg-2">Contraseña</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="password" name="contra" type="password" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="confirm_password" class="control-label col-lg-2">Confirmar Contraseña</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="confirm_password" name="recontra" type="password" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-2 col-lg-10">
-                                            <button class="btn btn-theme" type="submit">Guardar</button>
-                                            <a href="listar_trabajador.php" class="btn btn-theme04" type="button">Cancelar</a>
+                                            <input class="form-control " id="username" name="cargo" type="text" value="<?php echo $Row['cargo']; ?>" readonly />
                                         </div>
                                     </div>
                                 </form>

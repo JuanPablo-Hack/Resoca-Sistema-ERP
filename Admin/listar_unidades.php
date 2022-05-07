@@ -60,7 +60,7 @@ include 'php/conexion.php';
 
 
                           <a href='./editar_unidad.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                          <a href='./eliminar_unidad.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
+                          <a onclick="eliminarUnidad(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
 
                         </td>
                       </tr>
@@ -96,6 +96,8 @@ include 'php/conexion.php';
   <!--common script for all pages-->
   <script src="../assets/lib/common-scripts.js"></script>
   <!--script for this page-->
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="js/controller.js"></script>
 </body>
 
 </html>

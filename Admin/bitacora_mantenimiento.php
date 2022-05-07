@@ -20,7 +20,7 @@ $result2 = mysqli_query($conexion, $sql2);
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <form action="php/registro_mantenimiento.php" class="form-horizontal style-form" method="POST">
+              <form class="form-horizontal style-form" id="FormMantenimiento">
 
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Unidad Asignada</label>
@@ -125,6 +125,9 @@ $result2 = mysqli_query($conexion, $sql2);
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 

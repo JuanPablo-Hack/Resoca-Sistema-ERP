@@ -15,7 +15,7 @@
                     <!--  DATE PICKERS -->
                     <div class="col-lg-12">
                         <div class="form-panel">
-                            <form action="php/agregar_usuario.php" class="form-horizontal style-form" method='POST'>
+                            <form class="form-horizontal style-form" id="FormCliente">
                                 <h3>Datos generales</h3>
                                 <hr>
                                 <div class="form-group ">
@@ -52,8 +52,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Fecha de Programación de corte</label>
                                     <div class="col-md-3 col-xs-11">
-                                        <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                                            <input type="text" readonly="" value="01-01-2014" size="16" name='fecha' class="form-control">
+                                        <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2022" class="input-append date dpYears">
+                                            <input type="text" size="16" name='fecha' class="form-control">
                                             <span class="input-group-btn add-on">
                                                 <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
@@ -178,6 +178,9 @@
     <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
     <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
     <script src="../assets/lib/advanced-form-components.js"></script>
+    <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 
