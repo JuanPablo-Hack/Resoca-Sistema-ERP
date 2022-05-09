@@ -35,7 +35,7 @@ if ($Row = mysqli_fetch_array($result)) {
           <div class="col-lg-12">
             <div class="form-panel">
               <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="POST" action="./php/editar_unidad.php">
+                <form class="cmxform form-horizontal style-form" id="EditarUnidad">
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Identificador</label>
                     <div class="col-sm-4">
@@ -99,7 +99,7 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">Descripción</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control " id="ccomment" name="descripcion" value="<?php echo $descripcion; ?>" required></textarea>
+                      <textarea class="form-control " id="ccomment" name="descripcion" required><?php echo $descripcion; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group">
@@ -135,7 +135,76 @@ if ($Row = mysqli_fetch_array($result)) {
   <script src="../assets/lib/common-scripts.js"></script>
   <!--script for this page-->
   <script src="../assets/lib/form-validation-script.js"></script>
-
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("EditarUnidad")
+        .addEventListener("submit", editarUnidad);
+    });
+    async function editarUnidad(e) {
+      e.preventDefault();
+      var form = document.getElementById("EditarUnidad");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, editar mantenimiento",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            let data = new FormData(form);
+            data.append("accion", "editar");
+            fetch("php/unidad_controller.php", {
+                method: "POST",
+                body: data,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "El mantenimiento ha sido actualizado en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 </body>
 
 </html>

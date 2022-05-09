@@ -40,15 +40,9 @@ if ($Row = mysqli_fetch_array($result)) {
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <form action="php/editar_usuario.php" class="form-horizontal style-form" method='POST'>
+              <form class="form-horizontal style-form" id="FormEditarCliente">
                 <h3>Datos generales</h3>
                 <hr>
-                <div class="form-group ">
-                  <label for="firstname" class="control-label col-lg-2">Identificador</label>
-                  <div class="col-lg-10">
-                    <input class=" form-control" id="firstname" name="identificador" type="text" value="<?php echo $id; ?>" readonly />
-                  </div>
-                </div>
                 <div class="form-group ">
                   <label for="firstname" class="control-label col-lg-2">Nombre Completo</label>
                   <div class="col-lg-10">
@@ -178,10 +172,6 @@ if ($Row = mysqli_fetch_array($result)) {
         </div>
         <!-- /col-lg-12 -->
         </div>
-        <!-- /row -->
-        <!-- DATE TIME PICKERS -->
-
-        <!-- /form-panel -->
         </div>
         <!-- /col-lg-12 -->
         </div>
@@ -209,6 +199,77 @@ if ($Row = mysqli_fetch_array($result)) {
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("FormEditarCliente")
+        .addEventListener("submit", editarCliente);
+    });
+    async function editarCliente(e) {
+      e.preventDefault();
+      console.log("Editar Cliente");
+      var form = document.getElementById("FormEditarCliente");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, editar cliente",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            let data = new FormData(form);
+            data.append("accion", "editar");
+            fetch("php/cliente_controller.php", {
+                method: "POST",
+                body: data,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "El cliente ha sido actualizado en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 
 </body>
 

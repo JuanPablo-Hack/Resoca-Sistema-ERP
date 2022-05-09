@@ -1,24 +1,7 @@
 <?php
 $id = $_GET['id'];
-include 'php/conexion.php';
-$sql = "SELECT * FROM servicios WHERE id='" . $id . "'";
-$result = mysqli_query($conexion, $sql);
-if ($Row = mysqli_fetch_array($result)) {
-  $nombre = $Row['nombre'];
-
-  $tipo = $Row['tipo'];
-  $descrip = $Row['descripcion'];
-  $supervisor = $Row['supervisor'];
-  $operador = $Row['operador'];
-  $auxiliar = $Row['auxiliar'];
-  $modelo = $Row['modelo'];
-  $placas = $Row['placas'];
-  $destinofinal = $Row['destinofinal'];
-  $ubicacion = $Row['ubicacion'];
-  $material = $Row['material'];
-  $equipo = $Row['equipo'];
-}
-
+include 'php/selects.php';
+$Row = mysqli_fetch_array(get_servicio($id));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,26 +22,32 @@ if ($Row = mysqli_fetch_array($result)) {
             <div class="form-panel">
               <h3>Datos del Servicio</h3>
               <hr>
-              <form action="php/editar_servicio.php" class="form-horizontal style-form" method="POST">
+              <form class="form-horizontal style-form" id="EditServicio">
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Indentificador</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="identificador" value="<?php echo $id; ?>" readonly>
+                    <input type="text" class="form-control" name="identificador" value="<?php echo $Row['id']; ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="nombre" value="<?php echo $nombre; ?>">
+                    <input type="text" class="form-control" name="nombre" value="<?php echo $Row['nombre']; ?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Tipo de Servicio</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="tipo" value="<?php echo $tipo; ?>">
+                    <input type="text" class="form-control" name="tipo" value="<?php echo $Row['tipo']; ?>">
                   </div>
                 </div>
-
+                <div class="form-group ">
+                  <label for="ccomment" class="control-label col-lg-2">Descripción
+                  </label>
+                  <div class="col-sm-4">
+                    <textarea class="form-control " id="ccomment" name="descripcion"><?php echo $Row['descripcion']; ?></textarea>
+                  </div>
+                </div>
 
 
                 <h3>Datos de Personal</h3>
@@ -67,19 +56,19 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Supervisor</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="supervisor" value="<?php echo $supervisor; ?>">
+                      <input type="text" class="form-control" name="supervisor" value="<?php echo $Row['supervisor']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Operador</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="operador" value="<?php echo $operador; ?>">
+                      <input type="text" class="form-control" name="operador" value="<?php echo $Row['operador']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Auxiliar</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="auxiliar" value="<?php echo $auxiliar; ?>">
+                      <input type="text" class="form-control" name="auxiliar" value="<?php echo $Row['auxiliar']; ?>">
                     </div>
                   </div>
                   <h3>Datos del vehículo del servicio</h3>
@@ -87,13 +76,13 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Modelo</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="modelo" value="<?php echo $modelo; ?>">
+                      <input type="text" class="form-control" name="modelo" value="<?php echo $Row['modelo']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Placas</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="placas" value="<?php echo $placas; ?>">
+                      <input type="text" class="form-control" name="placas" value="<?php echo $Row['placas']; ?>">
                     </div>
                   </div>
                   <h3>Datos del destino final</h3>
@@ -101,13 +90,13 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="nombre_destino" value="<?php echo $destinofinal; ?>">
+                      <input type="text" class="form-control" name="nombre_destino" value="<?php echo $Row['destinofinal']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Ubicacion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="ubicacion" value="<?php echo $ubicacion; ?>">
+                      <input type="text" class="form-control" name="ubicacion" value="<?php echo $Row['ubicacion']; ?>">
                     </div>
                   </div>
                   <h3>Herramientas a utilizar</h3>
@@ -116,7 +105,7 @@ if ($Row = mysqli_fetch_array($result)) {
                     <label for="ccomment" class="control-label col-lg-2">Descripción de Material
                     </label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" name="descripcion_material" value="<?php echo $material; ?>">
+                      <textarea class="form-control " id="ccomment" name="descripcion_material"><?php echo $Row['material']; ?></textarea>
                     </div>
                   </div>
                   <h3>Equipo de Seguridad Necesario</h3>
@@ -124,8 +113,8 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">Descripción de Equipo
                     </label>
-                    <div class="col-lg-10">
-                      <input type="text" class="form-control" name="descripcion_equipo" value="<?php echo $equipo; ?>">
+                    <div class="col-sm-4">
+                      <textarea class="form-control " id="ccomment" name="descripcion_equipo"><?php echo $Row['equipo']; ?></textarea>
                     </div>
                   </div>
 
@@ -178,6 +167,9 @@ if ($Row = mysqli_fetch_array($result)) {
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/controller.js"></script>
 
 </body>
 

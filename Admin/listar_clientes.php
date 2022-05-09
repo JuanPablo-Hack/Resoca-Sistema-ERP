@@ -13,12 +13,11 @@ include 'php/conexion.php';
     <?php include 'templates/nav.php'; ?>
     <section id="main-content">
       <section class="wrapper">
-        <div class="row mt">
-          <div class="col-md-12">
-            <div class="content-panel">
-              <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i> Bitacora de Clientes</h4>
-                <hr>
+        <div class="row mb">
+          <!-- page start-->
+          <div class="content-panel">
+            <div class="adv-table">
+              <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
                     <th> ID</th>
@@ -26,15 +25,8 @@ include 'php/conexion.php';
                     <th class="hidden-phone"> NRA</th>
                     <th> Telefono</th>
                     <th> E-mail</th>
-                    <th> Area</th>
                     <th> Programación de Corte</th>
-                    <th> RFC</th>
-                    <th> Direccion</th>
-                    <th> Encargado</th>
-                    <th> Cargo</th>
-                    <th> Télefono</th>
-                    <th> E-mail</th>
-                    <th></th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -44,19 +36,12 @@ include 'php/conexion.php';
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
                     <tr>
-                      <td><?php echo $mostrar['id'] ?></td>
+                      <td><a href="./detalles_cliente.php?id_cliente=<?php echo $mostrar['id']  ?>"><?php echo $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['nombre'] ?></td>
                       <td><?php echo $mostrar['nra'] ?></td>
                       <td><?php echo $mostrar['telefono'] ?></td>
                       <td><?php echo $mostrar['email'] ?></td>
-                      <td><?php echo $mostrar['area'] ?></td>
                       <td><?php echo $mostrar['fecha_corte'] ?></td>
-                      <td><?php echo $mostrar['rfc'] ?></td>
-                      <td><?php echo $mostrar['dir'] . "," . $mostrar['cp'] ?></td>
-                      <td><?php echo $mostrar['nombre_representante'] ?></td>
-                      <td><?php echo $mostrar['cargo'] ?></td>
-                      <td><?php echo $mostrar['email_representante'] ?></td>
-                      <td><?php echo $mostrar['tel_representante'] ?></td>
                       <td>
 
                         <a href='./editar_usuarios.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
@@ -72,9 +57,8 @@ include 'php/conexion.php';
                 </tbody>
               </table>
             </div>
-            <!-- /content-panel -->
           </div>
-          <!-- /col-md-12 -->
+          <!-- page end-->
         </div>
         <!-- /row -->
       </section>
@@ -96,63 +80,18 @@ include 'php/conexion.php';
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="js/controller.js"></script>
   <script type="text/javascript">
-    /* Formating function for row details */
-    function fnFormatDetails(oTable, nTr) {
-      var aData = oTable.fnGetData(nTr);
-      var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-      sOut += '<tr><td>Rendering engine:</td><td>' + aData[1] + ' ' + aData[4] + '</td></tr>';
-      sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-      sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
-      sOut += '</table>';
-
-      return sOut;
-    }
-
     $(document).ready(function() {
-      /*
-       * Insert a 'details' column to the table
-       */
-      var nCloneTh = document.createElement('th');
-      var nCloneTd = document.createElement('td');
-      nCloneTd.innerHTML = '<img src="lib/advanced-datatable/images/details_open.png">';
-      nCloneTd.className = "center";
-
-      $('#hidden-table-info thead tr').each(function() {
-        this.insertBefore(nCloneTh, this.childNodes[0]);
-      });
-
-      $('#hidden-table-info tbody tr').each(function() {
-        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
-      });
-
       /*
        * Initialse DataTables, with no sorting on the 'details' column
        */
       var oTable = $('#hidden-table-info').dataTable({
         "aoColumnDefs": [{
-          "bSortable": false,
+          "bSortable": true,
           "aTargets": [0]
         }],
         "aaSorting": [
-          [1, 'asc']
+          [0, 'asc']
         ]
-      });
-
-      /* Add event listener for opening and closing details
-       * Note that the indicator for showing which row is open is not controlled by DataTables,
-       * rather it is done here
-       */
-      $('#hidden-table-info tbody td img').live('click', function() {
-        var nTr = $(this).parents('tr')[0];
-        if (oTable.fnIsOpen(nTr)) {
-          /* This row is already open - close it */
-          this.src = "lib/advanced-datatable/media/images/details_open.png";
-          oTable.fnClose(nTr);
-        } else {
-          /* Open this row */
-          this.src = "lib/advanced-datatable/images/details_close.png";
-          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
-        }
       });
     });
   </script>

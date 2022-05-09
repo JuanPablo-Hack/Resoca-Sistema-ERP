@@ -33,7 +33,7 @@ $result2 = mysqli_query($conexion, $sql2);
 
             <div class="form-panel">
               <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="POST" action="./php/editar_mantenimiento.php">
+                <form class="cmxform form-horizontal style-form" id="EditarMantenimiento">
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Identificador</label>
                     <div class="col-sm-4">
@@ -79,7 +79,7 @@ $result2 = mysqli_query($conexion, $sql2);
                     <label class="control-label col-md-3">Fecha de Proximo Servicio</label>
                     <div class="col-md-3 col-xs-11">
                       <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                        <input type="text" readonly="" value="<?php echo $fecha; ?>" size="16" class="form-control" name="fecha">
+                        <input type="text" value="<?php echo $fecha; ?>" size="16" class="form-control" name="fecha">
                         <span class="input-group-btn add-on">
                           <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -128,7 +128,77 @@ $result2 = mysqli_query($conexion, $sql2);
   <script src="../assets/lib/common-scripts.js"></script>
   <!--script for this page-->
   <script src="../assets/lib/form-validation-script.js"></script>
-
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("EditarMantenimiento")
+        .addEventListener("submit", editarMantenimiento);
+    });
+    async function editarMantenimiento(e) {
+      e.preventDefault();
+      console.log("Editar Cliente");
+      var form = document.getElementById("EditarMantenimiento");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, editar mantenimiento",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            let data = new FormData(form);
+            data.append("accion", "editar");
+            fetch("php/mantenimiento_controller.php", {
+                method: "POST",
+                body: data,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "El mantenimiento ha sido actualizado en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  // setTimeout(function() {
+                  //   location.reload();
+                  // }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 </body>
 
 </html>
