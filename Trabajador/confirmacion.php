@@ -47,7 +47,7 @@ if ($Row = mysqli_fetch_array($result)) {
                 <div class="form-group last">
                   <label class="control-label col-md-3">Firma de conformidad</label>
                   <div class="col-md-9">
-                    <canvas id="canvas"></canvas>
+                    <canvas id="canvas" style="border: 1px solid #000;"></canvas>
                   </div>
                 </div>
                 <div class="form-group">

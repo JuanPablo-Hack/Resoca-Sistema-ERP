@@ -60,10 +60,10 @@ include 'php/conexion.php';
                       <td>
 
 
-                        <a onclick="crearPDF(<?php echo $mostrar['id'] ?>)" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
+                        <a onclick="crearPDF(<?php echo $mostrar['id'] ?>)" title="Más Info" class="btn btn-success btn-xs"><i class="fa fa-info-circle"></i></a>
 
-                        <a href='./editar_orden.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                        <a onclick="eliminarOrden(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
+                        <a href='./editar_orden.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs" title="Editar Orden"><i class="fa fa-pencil"></i></a>
+                        <a onclick="eliminarOrden(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs" title="Eliminar Orden"> <i class="fa fa-trash-o "></i></a>
 
 
 

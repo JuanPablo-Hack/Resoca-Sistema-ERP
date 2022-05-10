@@ -1,5 +1,5 @@
 <?php
-$id = 100;
+$id = $_GET['id'];
 include 'php/selects.php';
 $Row = mysqli_fetch_array(get_orden($id));
 ?>
@@ -74,7 +74,7 @@ $Row = mysqli_fetch_array(get_orden($id));
                     <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Unidad</label>
                       <div class="col-sm-4">
-                        <input type="text" name='unidad_residuo' class="form-control" value="<?php echo $Row['unidad']; ?>" readonly>
+                        <input type="text" name='unidad_residuo' class="form-control" value="<?php echo $Row['unidad']; ?>">
                       </div>
                     </div>
                     <div class="form-group">

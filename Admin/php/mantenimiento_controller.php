@@ -27,9 +27,9 @@ function editarMantenimiento($id, $unidad, $taller, $factura, $descripcion, $fec
     $sql = "UPDATE registros_mantenimiento SET unidad='$unidad',taller='$taller',nofactura='$factura',descripcion='$descripcion',fecha='$fecha',km='$km' WHERE id='$id'";
     $resultado = $conexion->query($sql);
     if ($resultado) {
-        header("Refresh:0; url=../registro_exitoso.html");
+        echo    1;
     } else {
-        header("Refresh:0; url=../error_registro.html");
+        echo 0;
     }
 }
 function eliminar_mantenimiento($id)

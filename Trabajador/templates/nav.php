@@ -32,8 +32,8 @@
                 <ul class="sub">
 
                     <li><a href="listar_orden.php">Bitacora</a></li>
-                    <li><a href="calendar.html">Calendario</a></li>
-
+                    <li><a href="calendar.php">Calendario</a></li>
+                    <li><a href="listar_evidencias.php">Listar Evidencias</a></li>
                 </ul>
             </li>
 

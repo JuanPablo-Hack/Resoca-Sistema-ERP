@@ -34,16 +34,12 @@ $result2 = mysqli_query($conexion, $sql2);
     <section id="main-content">
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Editar Combustible</h3>
-        <!-- BASIC FORM VALIDATION -->
-
-        <!-- /row -->
-        <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
 
             <div class="form-panel">
               <div class=" form">
-                <form class="cmxform form-horizontal style-form" id="commentForm" method="POST" action="./php/editar_combustible.php">
+                <form class="cmxform form-horizontal style-form" method="POST" id="EditarCombustible">
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Identificador</label>
                     <div class="col-sm-4">
@@ -68,8 +64,8 @@ $result2 = mysqli_query($conexion, $sql2);
                   <div class="form-group">
                     <label class="control-label col-md-3">Fecha de carga</label>
                     <div class="col-md-3 col-xs-11">
-                      <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                        <input type="text" readonly="" value="<?php echo $fecha; ?>" size="16" class="form-control" name="fecha">
+                      <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" class="input-append date dpYears">
+                        <input type="text" value="<?php echo $fecha; ?>" size="16" class="form-control" name="fecha">
                         <span class="input-group-btn add-on">
                           <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -131,7 +127,7 @@ $result2 = mysqli_query($conexion, $sql2);
                   </div>
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">Crear</button>
+                      <button class="btn btn-theme" type="submit">Editar</button>
                       <a href="listar_combustible.php" class="btn btn-theme04" type="button">Cancelar</a>
                     </div>
                   </div>
@@ -150,11 +146,7 @@ $result2 = mysqli_query($conexion, $sql2);
       </section>
       <!-- /wrapper -->
     </section>
-    <!-- /MAIN CONTENT -->
-    <!--main content end-->
-    <!--footer start-->
     <?php include 'templates/footer.php'; ?>
-    <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="../assets/lib/jquery/jquery.min.js"></script>
@@ -166,6 +158,76 @@ $result2 = mysqli_query($conexion, $sql2);
   <script src="../assets/lib/common-scripts.js"></script>
   <!--script for this page-->
   <script src="../assets/lib/form-validation-script.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("EditarCombustible")
+        .addEventListener("submit", editarCombustible);
+    });
+    async function editarCombustible(e) {
+      e.preventDefault();
+      var form = document.getElementById("EditarCombustible");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, editar registros de combustible",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            let data = new FormData(form);
+            data.append("accion", "editar");
+            fetch("php/combustible_controller.php", {
+                method: "POST",
+                body: data,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "El registro ha sido actualizado en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 
 </body>
 
