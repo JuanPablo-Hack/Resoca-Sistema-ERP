@@ -1,11 +1,9 @@
 <?php
-$id = $_GET['id'];
 include 'php/conexion.php';
-$sql = "SELECT * FROM ordenes WHERE id='" . $id . "'";
+include 'php/selects.php';
+$Row = mysqli_fetch_array(get_confirmacion($_GET['id']));
+$sql = "SELECT * FROM ordenes";
 $result = mysqli_query($conexion, $sql);
-if ($Row = mysqli_fetch_array($result)) {
-  $folio = $Row['id'];
-}
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +23,38 @@ if ($Row = mysqli_fetch_array($result)) {
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <form class="form-horizontal style-form" enctype="multipart/form-data" id="formConfirmar">
+              <form class="form-horizontal style-form" enctype="multipart/form-data" id="EditarConfirmacion">
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Folio Relacionado</label>
+                  <label class="col-sm-2 col-sm-2 control-label">Indentificador</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="folio" value="<?php echo $folio; ?>" readonly>
+                    <input type="text" class="form-control" name="identificador" value="<?php echo $Row['id']; ?>" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Folio de Orden</label>
+                  <div class="col-sm-4">
+                    <select class="form-control" name='folio'>
+                      <option value="<?php echo $Row['id_orden']; ?>"><?php echo "FSO-22-" . $Row['id_orden']; ?></option>
+                      <?php
+                      while ($Row1 = mysqli_fetch_array($result)) {
+                      ?>
+                        <option value=<?php echo $Row1['id']; ?>><?php echo "FSO-22-" . $Row1['id']; ?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Nombre de la persona que autoriza</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="nombre" required>
+                    <input type="text" class="form-control" name="nombre" value="<?php echo $Row['nombre']; ?>" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Cargo de la persona que autoriza</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="cargo" required>
+                    <input type="text" class="form-control" name="cargo" value="<?php echo $Row['cargo']; ?>" required>
                   </div>
                 </div>
                 <div class="form-group last">
@@ -49,7 +62,7 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                        <img src="../confirmaciones/<?php echo $Row['id_orden'] . "/" . $Row['foto'] ?>" alt="" />
                       </div>
                       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                       <div>
@@ -72,7 +85,7 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                        <img src="../confirmaciones/<?php echo $Row['id_orden'] . "/" . $Row['foto1'] ?>" alt="" />
                       </div>
                       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                       <div>
@@ -95,7 +108,7 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                        <img src="../confirmaciones/<?php echo $Row['id_orden'] . "/" . $Row['foto2'] ?>" alt="" />
                       </div>
                       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                       <div>
@@ -118,7 +131,7 @@ if ($Row = mysqli_fetch_array($result)) {
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                        <img src="../confirmaciones/<?php echo $Row['id_orden'] . "/" . $Row['foto3'] ?>" alt="" />
                       </div>
                       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                       <div>
@@ -137,9 +150,14 @@ if ($Row = mysqli_fetch_array($result)) {
                   </div>
                 </div>
                 <div class="form-group last">
-                  <label class="control-label col-md-3">Firma de conformidad</label>
+                  <label class="control-label col-md-3">Firma del Cliente</label>
                   <div class="col-md-9">
-                    <canvas id="canvas" style="border: 1px solid #000;"></canvas>
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="../firmas/<?php echo $Row['ruta']; ?>" alt="" />
+                      </div>
+                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -186,8 +204,80 @@ if ($Row = mysqli_fetch_array($result)) {
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
-  <script src="./js/script.js"></script>
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("EditarConfirmacion")
+        .addEventListener("submit", editarconfirmar);
+    });
+
+    async function editarconfirmar(e) {
+      e.preventDefault();
+      var form = document.getElementById("EditarConfirmacion");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, editar confirmación",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            var form = document.getElementById("EditarConfirmacion");
+            const fd = new FormData(form);
+            fd.append("accion", "editar");
+            fetch("php/confirmacion_controller.php", {
+                method: "POST",
+                body: fd,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "La confirmacion ha sido editada en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  // form.reset();
+                  // setTimeout(function() {
+                  //   location.reload();
+                  // }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 </body>
 
 </html>
