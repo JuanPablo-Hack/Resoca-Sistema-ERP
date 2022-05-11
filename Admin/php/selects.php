@@ -27,3 +27,10 @@ function get_evidencia($id)
     $result = mysqli_query($conexion, $sql);
     return $result;
 }
+function get_confirmacion($id)
+{
+    include 'conexion.php';
+    $sql = "SELECT * FROM confimarcion WHERE id='" . $id . "'";
+    $result = mysqli_query($conexion, $sql);
+    return $result;
+}

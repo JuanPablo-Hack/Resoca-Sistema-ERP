@@ -51,6 +51,12 @@ $Row = mysqli_fetch_array($result);
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">Hora programada</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name='cargo' class="form-control" value="<?php echo $Row['hora'] ?>" readonly />
+                                    </div>
+                                </div>
                                 <div class="row mt"></div>
                                 <h3>Datos del Residuo</h3>
                                 <hr>

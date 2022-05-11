@@ -36,6 +36,7 @@
                     <li><a href="crear_servicio.php">Crear Servicio</a></li>
                     <li><a href="listar_servicios.php">Lista de Servicios</a></li>
                     <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
+                    <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

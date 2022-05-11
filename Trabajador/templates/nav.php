@@ -34,6 +34,7 @@
                     <li><a href="listar_orden.php">Bitacora</a></li>
                     <li><a href="calendar.php">Calendario</a></li>
                     <li><a href="listar_evidencias.php">Listar Evidencias</a></li>
+                    <li><a href="listar_confirmaciones.php">Listar Confirmaciones</a></li>
                 </ul>
             </li>
 

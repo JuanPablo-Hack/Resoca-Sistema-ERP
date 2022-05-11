@@ -84,6 +84,12 @@ $result2 = mysqli_query($conexion, $sql2);
                     <span class="help-block">Select date</span>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Hora de Programación</label>
+                  <div class="col-sm-4">
+                    <input type="text" name='hora' class="form-control">
+                  </div>
+                </div>
                 <div class="row mt"></div>
                 <h3>Datos del Residuo</h3>
                 <hr>

@@ -46,7 +46,7 @@ $Row = mysqli_fetch_array(get_orden($id));
                   <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Estado de la Orden</label>
                     <div class="col-sm-4">
-                      <input type="text" name='estado' class="form-control" value="<?php echo $Row['estado']; ?>" ">
+                      <input type="text" name='estado' class="form-control" value="<?php echo $Row['estado']; ?>">
                   </div>
                 </div>
 
@@ -60,6 +60,12 @@ $Row = mysqli_fetch_array(get_orden($id));
                           </span>
                         </div>
                         <span class="help-block">Select date</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">Hora de Programación</label>
+                      <div class="col-sm-4">
+                        <input type="text" name='hora' class="form-control" value="<?php echo $Row['hora']; ?>">
                       </div>
                     </div>
                     <div class="row mt"></div>
