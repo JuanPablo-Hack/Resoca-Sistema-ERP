@@ -6,6 +6,8 @@ $result = mysqli_query($conexion, $sql);
 if ($Row = mysqli_fetch_array($result)) {
   $folio = $Row['id'];
 }
+$sql2 = "SELECT * FROM catalogo";
+$result2 = mysqli_query($conexion, $sql2);
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,130 @@ if ($Row = mysqli_fetch_array($result)) {
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="cantidad" required>
+                    <select class="form-control" onchange="cambiar_conceptos()" name="num_concepto" id="concepto">
+                      <option value="0">- Selecciona la cantidad -</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="concepto_1" style="display: none;" id="concepto_1">
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tipo de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="concepto_1">
+                        <option value="0">-</option>
+                        <?php
+                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        ?>
+                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="cantidad_1" required>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="concepto_2" style="display: none;" id="concepto_2">
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tipo de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="concepto_2">
+                        <option value="0">-</option>
+                        <?php
+                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        ?>
+                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="cantidad_2">
+                    </div>
+                  </div>
+                </div>
+                <div class="concepto_3" style="display: none;" id="concepto_3">
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tipo de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="concepto_3">
+                        <option value="0">-</option>
+                        <?php
+                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        ?>
+                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="cantidad_3">
+                    </div>
+                  </div>
+                </div>
+                <div class="concepto_4" style="display: none;" id="concepto_4">
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tipo de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="concepto_4">
+                        <option value="0">-</option>
+                        <?php
+                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        ?>
+                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="cantidad_4">
+                    </div>
+                  </div>
+                </div>
+                <div class="concepto_5" style="display: none;" id="concepto_5">
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tipo de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="concepto_5">
+                        <option value="0">-</option>
+                        <?php
+                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        ?>
+                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="cantidad_5">
+                    </div>
                   </div>
                 </div>
                 <div class="form-group ">
@@ -189,6 +314,55 @@ if ($Row = mysqli_fetch_array($result)) {
             );
           }
         });
+    }
+  </script>
+  <script type="text/javascript">
+    function cambiar_conceptos() {
+      var x = document.getElementById("concepto").value;
+      switch (x) {
+        case "1":
+          document.getElementById("concepto_1").style.display = "inherit";
+          document.getElementById("concepto_2").style.display = "none";
+          document.getElementById("concepto_3").style.display = "none";
+          document.getElementById("concepto_4").style.display = "none";
+          document.getElementById("concepto_5").style.display = "none";
+          break;
+        case "2":
+          document.getElementById("concepto_1").style.display = "inherit";
+          document.getElementById("concepto_2").style.display = "inherit";
+          document.getElementById("concepto_3").style.display = "none";
+          document.getElementById("concepto_4").style.display = "none";
+          document.getElementById("concepto_5").style.display = "none";
+          break;
+        case "3":
+          document.getElementById("concepto_1").style.display = "inherit";
+          document.getElementById("concepto_2").style.display = "inherit";
+          document.getElementById("concepto_3").style.display = "inherit";
+          document.getElementById("concepto_4").style.display = "none";
+          document.getElementById("concepto_5").style.display = "none";
+          break;
+        case "4":
+          document.getElementById("concepto_1").style.display = "inherit";
+          document.getElementById("concepto_2").style.display = "inherit";
+          document.getElementById("concepto_3").style.display = "inherit";
+          document.getElementById("concepto_4").style.display = "inherit";
+          document.getElementById("concepto_5").style.display = "none";
+          break;
+        case "5":
+          document.getElementById("concepto_1").style.display = "inherit";
+          document.getElementById("concepto_2").style.display = "inherit";
+          document.getElementById("concepto_3").style.display = "inherit";
+          document.getElementById("concepto_4").style.display = "inherit";
+          document.getElementById("concepto_5").style.display = "inherit";
+          break;
+        case "0":
+          document.getElementById("concepto_1").style.display = "none";
+          document.getElementById("concepto_2").style.display = "none";
+          document.getElementById("concepto_3").style.display = "none";
+          document.getElementById("concepto_4").style.display = "none";
+          document.getElementById("concepto_5").style.display = "none";
+
+      }
     }
   </script>
 
