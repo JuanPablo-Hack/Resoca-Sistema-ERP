@@ -70,8 +70,8 @@
                 </ul>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
+                <a href="reportes_imades.php">
+                    <i class="fa fa-bar-chart-o"></i>
                     <span>Reporte Imades</span>
                 </a>
             </li>
