@@ -1,64 +1,43 @@
 <?php
-
-switch ($_POST['num_concepto']) {
-    case 1:
-        $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'];
+switch ($_POST['accion']) {
+    case 'agregar':
+        switch ($_POST['num_concepto']) {
+            case 1:
+                $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'];
+                break;
+            case 2:
+                $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'];
+                break;
+            case 3:
+                $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'];
+                break;
+            case 4:
+                $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'];
+                break;
+            case 5:
+                $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'] . ',' . $_POST['concepto_5'] . ',' . $_POST['cantidad_5'];
+                break;
+        }
+        agregar_evidencia($_POST['folio'], $_POST['ticket'], $_POST['num_concepto'], $arreglo,  $_FILES['image']['name'], $_POST['comentarios']);
         break;
-    case 2:
-        $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'];
+    case 'editar':
+        editar_evidencia($_POST['identificador'], $_POST['folio'], $_POST['ticket'], $_POST['cantidad'],  $_FILES['image']['name'], $_POST['comentarios']);
         break;
-    case 3:
-        $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'];
-        break;
-    case 4:
-        $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'];
-        break;
-    case 5:
-        $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'] . ',' . $_POST['concepto_5'] . ',' . $_POST['cantidad_5'];
+    case 'eliminar':
+        eliminar_evidencia($_POST['id']);
         break;
 }
-agregar_evidencia($_POST['folio'], $_POST['ticket'], $_POST['num_concepto'], $arreglo,  $_FILES['image']['name'], $_POST['comentarios']);
-
-// switch ($_POST['accion']) {
-//     case 'agregar':
-//         switch ($_POST['num_concepto']) {
-//             case 1:
-//                 $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'];
-//                 break;
-//             case 2:
-//                 $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'];
-//                 break;
-//             case 3:
-//                 $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'];
-//                 break;
-//             case 4:
-//                 $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'];
-//                 break;
-//             case 5:
-//                 $arreglo = $_POST['concepto_1'] . "," . $_POST['cantidad_1'] . ',' . $_POST['concepto_2'] . "," . $_POST['cantidad_2'] . ',' . $_POST['concepto_3'] . "," . $_POST['cantidad_3'] . ',' . $_POST['concepto_4'] . ',' . $_POST['cantidad_4'] . ',' . $_POST['concepto_5'] . ',' . $_POST['cantidad_5'];
-//                 break;
-//         }
-//         agregar_evidencia($_POST['folio'], $_POST['ticket'], $_POST['num_concepto'], $arreglo,  $_FILES['image']['name'], $_POST['comentarios']);
-//         break;
-//     case 'editar':
-//         editar_evidencia($_POST['identificador'], $_POST['folio'], $_POST['ticket'], $_POST['cantidad'],  $_FILES['image']['name'], $_POST['comentarios']);
-//         break;
-//     case 'eliminar':
-//         eliminar_evidencia($_POST['id']);
-//         break;
-// }
 function agregar_evidencia($folio, $ticket, $num_conceptos, $arreglo, $foto, $comentarios)
 {
     include './conexion.php';
-    echo $arreglo;
-    // agregar_imagen($folio);
-    // $sql = "INSERT INTO evidencias (folio,ticket, cantidad, comentarios, foto) VALUES ( '$folio','$ticket', '$cantidad', '$comentarios', '$foto');";
-    // $resultado = $conexion->query($sql);
-    // if ($resultado) {
-    //     echo 1;
-    // } else {
-    //     echo 0;
-    // }
+    agregar_imagen($folio);
+    $sql = "INSERT INTO evidencias (folio,ticket, num_conceptos,arreglo, comentarios, foto) VALUES ( '$folio','$ticket', '$num_conceptos','$arreglo', '$comentarios', '$foto');";
+    $resultado = $conexion->query($sql);
+    if ($resultado) {
+        echo 1;
+    } else {
+        echo 0;
+    }
 }
 function editar_evidencia($id, $folio, $ticket, $cantidad, $foto, $comentarios)
 {

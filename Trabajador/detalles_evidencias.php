@@ -35,12 +35,10 @@ $Row = mysqli_fetch_array(get_evidencia($_GET['id_evidencia']));
                                         <input type="text" class="form-control" value="<?php echo $Row['ticket']; ?>" readonly>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Cantidad de Residuo Recolectado</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" value="<?php echo $Row['cantidad']; ?>" readonly>
-                                    </div>
-                                </div>
+                                <?php include
+                                    'templates/conceptos.php';
+                                    concepto_vista($Row['num_conceptos'],$Row['arreglo'])
+                                ?>
                                 <div class="form-group ">
                                     <label for="ccomment" class="col-sm-2 col-sm-2 control-label">Comentarios</label>
                                     <div class="col-sm-4">

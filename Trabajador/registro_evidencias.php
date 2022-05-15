@@ -8,6 +8,10 @@ if ($Row = mysqli_fetch_array($result)) {
 }
 $sql2 = "SELECT * FROM catalogo";
 $result2 = mysqli_query($conexion, $sql2);
+$result3 = mysqli_query($conexion, $sql2);
+$result4 = mysqli_query($conexion, $sql2);
+$result5 = mysqli_query($conexion, $sql2);
+$result6 = mysqli_query($conexion, $sql2);
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +66,7 @@ $result2 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result2)) {
                         ?>
-                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -84,9 +88,9 @@ $result2 = mysqli_query($conexion, $sql2);
                       <select class="form-control" name="concepto_2">
                         <option value="0">-</option>
                         <?php
-                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        while ($Row1 = mysqli_fetch_array($result3)) {
                         ?>
-                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -107,9 +111,9 @@ $result2 = mysqli_query($conexion, $sql2);
                       <select class="form-control" name="concepto_3">
                         <option value="0">-</option>
                         <?php
-                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        while ($Row1 = mysqli_fetch_array($result4)) {
                         ?>
-                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -130,9 +134,9 @@ $result2 = mysqli_query($conexion, $sql2);
                       <select class="form-control" name="concepto_4">
                         <option value="0">-</option>
                         <?php
-                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        while ($Row1 = mysqli_fetch_array($result5)) {
                         ?>
-                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -153,9 +157,9 @@ $result2 = mysqli_query($conexion, $sql2);
                       <select class="form-control" name="concepto_5">
                         <option value="0">-</option>
                         <?php
-                        while ($Row1 = mysqli_fetch_array($result2)) {
+                        while ($Row1 = mysqli_fetch_array($result6)) {
                         ?>
-                          <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
