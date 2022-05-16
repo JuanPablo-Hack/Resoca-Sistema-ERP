@@ -1,4 +1,5 @@
 <?php
+
 switch ($_POST['accion']) {
     case 'agregar':
         switch ($_POST['num_concepto']) {
@@ -20,9 +21,9 @@ switch ($_POST['accion']) {
         }
         agregar_evidencia($_POST['folio'], $_POST['ticket'], $_POST['num_concepto'], $arreglo,  $_FILES['image']['name'], $_POST['comentarios']);
         break;
-    case 'editar':
-        editar_evidencia($_POST['identificador'], $_POST['folio'], $_POST['ticket'], $_POST['cantidad'],  $_FILES['image']['name'], $_POST['comentarios']);
-        break;
+        // case 'editar':
+        //     editar_evidencia($_POST['identificador'], $_POST['folio'], $_POST['ticket'], $_POST['num_concepto'], $arreglo,  $_FILES['image']['name'], $_POST['comentarios']);
+        //     break;
     case 'eliminar':
         eliminar_evidencia($_POST['id']);
         break;
@@ -39,18 +40,18 @@ function agregar_evidencia($folio, $ticket, $num_conceptos, $arreglo, $foto, $co
         echo 0;
     }
 }
-function editar_evidencia($id, $folio, $ticket, $cantidad, $foto, $comentarios)
-{
-    include './conexion.php';
-    agregar_imagen($folio);
-    $sql = "UPDATE evidencias SET folio = '$folio', ticket = '$ticket',cantidad = '$cantidad', foto = '$foto', comentarios = '$comentarios' WHERE id = $id ";
-    $resultado = $conexion->query($sql);
-    if ($resultado) {
-        echo 1;
-    } else {
-        echo 0;
-    }
-}
+// function editar_evidencia($id, $folio, $ticket, $num_conceptos, $arreglo, $foto, $comentarios)
+// {
+//     include './conexion.php';
+//     agregar_imagen($folio);
+//     $sql = "UPDATE evidencias SET folio = '$folio', ticket = '$ticket',num_conceptos = '$num_conceptos',arreglo = '$arreglo', foto = '$foto', comentarios = '$comentarios' WHERE id = $id ";
+//     $resultado = $conexion->query($sql);
+//     if ($resultado) {
+//         echo 1;
+//     } else {
+//         echo 0;
+//     }
+// }
 function eliminar_evidencia($id)
 {
     include './conexion.php';

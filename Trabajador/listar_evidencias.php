@@ -24,7 +24,6 @@ include 'php/conexion.php';
                     <th class="hidden-phone">Evidencia</th>
                     <th>Folio</th>
                     <th>Ticket</th>
-                    <th class="hidden-phone">Cantidad</th>
                     <th class="hidden-phone">Hora de Registro y Día</th>
                     <th class="hidden-phone">Acciones</th>
                   </tr>
@@ -39,11 +38,10 @@ include 'php/conexion.php';
                       <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
-                      <td><?php echo $mostrar['cantidad'] ?></td>
                       <td><?php echo $mostrar['creado'] ?></td>
 
                       <td>
-                        <a href='./editar_evidencias.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs" title="Editar Orden"><i class="fa fa-pencil"></i></a>
+
                         <a onclick="eliminarEvidencia(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
                       </td>
                     </tr>
