@@ -90,39 +90,7 @@ $result2 = mysqli_query($conexion, $sql2);
                     <input type="text" name='hora' class="form-control">
                   </div>
                 </div>
-                <div class="row mt"></div>
-                <h3>Datos del Residuo</h3>
-                <hr>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Cantidad</label>
-                  <div class="col-sm-4">
-                    <input type="text" name='cantidad' class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Unidad</label>
-                  <div class="col-sm-4">
-                    <input type="text" name='unidad_residuo' class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Concepto</label>
-                  <div class="col-sm-4">
-                    <input type="text" name='concepto' class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Manifiesto</label>
-                  <div class="col-sm-4">
-                    <input type="text" name='manifiesto' class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Factura</label>
-                  <div class="col-sm-4">
-                    <input type="text" name='factura' class="form-control">
-                  </div>
-                </div>
+               
                 <div class="row mt"></div>
                 <h3>Datos de la unidad de servicio</h3>
                 <hr>
