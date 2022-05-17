@@ -23,7 +23,7 @@ include 'php/conexion.php';
                   <tr>
                     <th>Folio</th>
                     <th>Cliente</th>
-                    <th class="hidden-phone">Fecha</th>
+                    <th class="hidden-phone">Fecha y Hora</th>
                     <th class="hidden-phone">Tipo Servicio</th>
                     <th class="hidden-phone">Estado</th>
                     <th>Acciones</th>
@@ -45,7 +45,7 @@ include 'php/conexion.php';
                                                                                                           }
                                                                                                           echo $nombre;
                                                                                                           ?></a></td>
-                      <td><?php echo $mostrar['fecha'] ?></td>
+                      <td><?php echo $mostrar['fecha'].' '.$mostrar['hora'] ?></td>
                       <td><a href="./detalles_servicio.php?id_cliente=<?php echo $mostrar['servicio']  ?>"><?php
 
 
