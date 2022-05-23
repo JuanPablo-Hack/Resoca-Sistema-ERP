@@ -1,3 +1,8 @@
+<?php
+include 'php/conexion.php';
+$sql = "SELECT * FROM clientes";
+$result = mysqli_query($conexion, $sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,71 +20,55 @@
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <h3>Datos del Servicio</h3>
-              <hr>
               <form action="php/crear_corte.php" class="form-horizontal style-form" method="POST">
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">No. de Folio</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" name="folio">
+                  <label class="control-label col-md-3">Fecha de inicio de corte</label>
+                  <div class="col-md-3 col-xs-11">
+                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2022" class="input-append date dpYears">
+                      <input type="text" readonly="" value="01-01-2014" size="16" name='fecha' class="form-control">
+                      <span class="input-group-btn add-on">
+                        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
+                      </span>
+                    </div>
+                    <span class="help-block">Select date</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">No. de ticket</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" name="ticket">
+                  <label class="control-label col-md-3">Fecha de termino de corte</label>
+                  <div class="col-md-3 col-xs-11">
+                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2022" class="input-append date dpYears">
+                      <input type="text" readonly="" value="01-01-2014" size="16" name='fecha' class="form-control">
+                      <span class="input-group-btn add-on">
+                        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
+                      </span>
+                    </div>
+                    <span class="help-block">Select date</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">%</label>
+                  <label class="col-sm-2 col-sm-2 control-label">Cliente</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="porcentaje">
+                    <select class="form-control" name='nombre_cliente'>
+                      <option value="0"></option>
+                      <?php
+                      while ($Row1 = mysqli_fetch_array($result)) {
+                      ?>
+                        <option value=<?php echo $Row1['id']; ?>><?php echo $Row1['nombre']; ?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">KG</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" name="kilos">
+                  <div class="col-lg-offset-2 col-lg-10">
+                    <button class="btn btn-theme" type="submit">Crear</button>
+                    <a href="listar_reportes.php" class="btn btn-theme04" type="button">Cancelar</a>
                   </div>
                 </div>
-                <h3>Datos de Facturación</h3>
-                <hr>
-                <form action="#" class="form-horizontal style-form">
-                  <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Cantidad total</label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" name="cantidad">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Unidad</label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" name="unidad">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Descripción</label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" name="descripcion">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Precio Unitario</label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" name="precio">
-                    </div>
-                  </div>
 
 
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">Crear</button>
-                      <a href="listar_reportes.php" class="btn btn-theme04" type="button">Cancelar</a>
-                    </div>
-                  </div>
-
-
-                </form>
+              </form>
             </div>
 
             <!-- col-lg-12-->

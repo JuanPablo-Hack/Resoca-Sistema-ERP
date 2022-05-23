@@ -58,39 +58,6 @@ $Row = mysqli_fetch_array($result);
                                     </div>
                                 </div>
                                 <div class="row mt"></div>
-                                <h3>Datos del Residuo</h3>
-                                <hr>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Cantidad</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" name='cantidad' class="form-control" value="<?php echo $Row['cantidad']; ?>" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Unidad</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" name='unidad_residuo' class="form-control" value="<?php echo $Row['unidad']; ?>" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Concepto</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" name='concepto' class="form-control" value="<?php echo $Row['concepto']; ?>" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Manifiesto</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" name='manifiesto' class="form-control" value="<?php echo $Row['manifiesto']; ?>" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Factura</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" name='factura' class="form-control" value="<?php echo $Row['factura']; ?>" readonly />
-                                    </div>
-                                </div>
-                                <div class="row mt"></div>
                                 <h3>Datos de la unidad de servicio</h3>
                                 <hr>
                                 <div class="form-group">
