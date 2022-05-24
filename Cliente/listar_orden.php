@@ -24,7 +24,6 @@ session_start();
                 <thead>
                   <tr>
                     <th>Folio</th>
-                    <th>Cantidad</th>
                     <th class="hidden-phone">Fecha</th>
                     <th class="hidden-phone">Tipo Servicio</th>
                     <th class="hidden-phone">Encargado</th>
@@ -40,8 +39,7 @@ session_start();
                   ?>
                     <tr>
 
-                      <td><?php echo '97/22-' . $mostrar['id'] ?></td>
-                      <td><?php echo $mostrar['cantidad'] ?></td>
+                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-22-' . $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['fecha'] ?></td>
                       <td><?php
 
