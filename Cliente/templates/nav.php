@@ -5,7 +5,7 @@
     <a href="index.php" class="logo"><b>Grupo<span>SOCA</span></b></a>
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="php/logout.php">Cerrar Sesión</a></li>
+            <li><a class="logout" href="../login.html">Cerrar Sesión</a></li>
         </ul>
     </div>
 </header>
@@ -29,7 +29,8 @@
                 <ul class="sub">
 
                     <li><a href="listar_orden.php">Bitacora</a></li>
-                    <li><a href="listar_evidencias.php">Evidencias</a></li>
+                    <li><a href="listar_evidencias.php">Mis Evidencias</a></li>
+                    <li><a href="listar_confirmaciones.php">Mis Confirmaciones</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

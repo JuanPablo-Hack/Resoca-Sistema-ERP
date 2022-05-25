@@ -6,7 +6,7 @@
     <a href="index.php" class="logo"><b>Grupo<span>SOCA</span></b></a>
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="login.html">Cerrar Sesión</a></li>
+            <li><a class="logout" href="../login.html">Cerrar Sesión</a></li>
         </ul>
     </div>
 </header>

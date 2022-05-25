@@ -25,6 +25,7 @@ include 'php/conexion.php';
                     <th>Folio</th>
                     <th>Ticket</th>
                     <th class="hidden-phone">Hora de Registro y Día</th>
+                    <th class="hidden-phone">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,7 +40,10 @@ include 'php/conexion.php';
                       <td><?php echo $mostrar['ticket'] ?></td>
                       <td><?php echo $mostrar['creado'] ?></td>
 
-                     
+                      <td>
+
+                        <a onclick="eliminarEvidencia(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
+                      </td>
                     </tr>
                   <?php
                   }
@@ -67,6 +71,8 @@ include 'php/conexion.php';
   <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
   <script src="../assets/lib/common-scripts.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <!--script for this page-->
   <script type="text/javascript">
     $(document).ready(function() {

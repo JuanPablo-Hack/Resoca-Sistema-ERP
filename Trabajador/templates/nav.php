@@ -8,7 +8,7 @@
 
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="login.html">Cerrar Sesión</a></li>
+            <li><a class="logout" href="../login.html">Cerrar Sesión</a></li>
         </ul>
     </div>
 </header>
@@ -16,7 +16,7 @@
     <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img src="../assets/img/banner.png" class="img-circle" width="80"></a></p>
+            <p class="centered"><a href="#"><img src="../assets/img/banner.png" class="img-circle" width="80"></a></p>
             <h5 class="centered">Trabajador</h5>
             <li class="mt">
                 <a class="active" href="index.html">
