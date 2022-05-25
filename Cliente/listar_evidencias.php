@@ -21,12 +21,10 @@ include 'php/conexion.php';
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
+                    <th class="hidden-phone">Evidencia</th>
                     <th>Folio</th>
                     <th>Ticket</th>
-                    <th class="hidden-phone">Cantidad</th>
-                    <th class="hidden-phone">Comentarios</th>
                     <th class="hidden-phone">Hora de Registro y Día</th>
-                    <th class="hidden-phone">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -36,16 +34,12 @@ include 'php/conexion.php';
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
                     <tr>
-                      <td><?php echo $mostrar['folio'] ?></td>
+                      <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
+                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
-                      <td><?php echo $mostrar['cantidad'] ?></td>
-                      <td><?php echo $mostrar['comentarios'] ?></td>
                       <td><?php echo $mostrar['creado'] ?></td>
 
-                      <td>
-                        <a href='../evidencias/<?php echo $mostrar['folio'] . "/" . $mostrar['foto'] ?>' class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
-                        <a href='./eliminar_evidencia.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
-                      </td>
+                     
                     </tr>
                   <?php
                   }
