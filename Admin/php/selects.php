@@ -34,3 +34,10 @@ function get_confirmacion($id)
     $result = mysqli_query($conexion, $sql);
     return $result;
 }
+function get_catalgo($id)
+{
+    include 'conexion.php';
+    $sql = "SELECT * FROM catalogo WHERE id='" . $id . "'";
+    $result = mysqli_query($conexion, $sql);
+    return $result;
+}

@@ -12,7 +12,6 @@
 </header>
 <aside>
     <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered">
                 <a href="#"><img src="../assets/img/banner.png" class="img-circle" width="80"></a>
@@ -37,6 +36,8 @@
                     <li><a href="listar_servicios.php">Lista de Servicios</a></li>
                     <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
                     <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
+                    <li><a href="crear_catalogo.php">Alta de Concepto</a></li>
+                    <li><a href="listar_catalogo.php">Catalogo de Conceptos</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
