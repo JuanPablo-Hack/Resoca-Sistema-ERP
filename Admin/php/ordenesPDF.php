@@ -14,6 +14,15 @@ $serviciof = $servicio->fetch_assoc();
 $unidad = $conexion->query("SELECT * FROM unidades WHERE id = " . $ordenf['unidadasig']);
 $unidadf = $unidad->fetch_assoc();
 
+$recoleccion = $conexion->query("SELECT * FROM evidencias WHERE folio = " . $id);
+$recoleccionf = $recoleccion->fetch_assoc();
+
+$confirmacion = $conexion->query("SELECT * FROM confimarcion WHERE id_orden = " . $id);
+$confirmacionf = $confirmacion->fetch_assoc();
+
+$porciones = explode(",", $recoleccionf['arreglo']);
+
+
 echo '
 <!DOCTYPE html>
 <html lang="es">
@@ -47,7 +56,7 @@ echo '
   <div class="">
     <div class="m-2 p-3 row border border-dark bg-secondary">
       <div class="col-sm-12 mb-1 mx-auto">
-        <img class="border border-dark" src="img/orden_servicio.png" width="100%">
+        <img class="border border-dark" src="../assets/img/orden_servicio.png" width="100%">
       </div>
       <div class="col-sm-5 mx-auto my-2 bg-light border border-dark">
         <div class="row">
@@ -62,7 +71,7 @@ echo '
       <div class="col-sm-5 mx-auto my-2 bg-light border border-dark">
         <div class="row">
           <div class="col-sm-12">
-            <label for="" class="font-weight-bold">2-. Autoriza: ' . utf8_encode($ordenf['encargado']) . '</label>
+            <label for="" class="font-weight-bold">2-. Autoriza: ' . $ordenf['encargado'] . '</label>
           </div>
           <div class="col-sm-12">
             <label for="" class="font-weight-bold">4-. Puesto: ' . utf8_encode($ordenf['cargo']) . '</label>
@@ -91,10 +100,10 @@ echo '
       <div class="col-sm-5 mx-auto my-2 bg-light border border-dark">
         <div class="row">
           <div class="col-sm-12">
-            <label for="" class="font-weight-bold my-2">Tipo: ' . utf8_encode($serviciof['tipo']) . '</label><br>
-            <label for="" class="font-weight-bold my-2">Concepto: ' . utf8_encode($serviciof['nombre']) . '</label><br>
+            <label for="" class="font-weight-bold my-2">Tipo: ' . $serviciof['tipo'] . '</label><br>
+            <label for="" class="font-weight-bold my-2">Concepto: ' . $serviciof['nombre'] . '</label><br>
             <label for="" class="font-weight-bold my-2">Otro (especifique): </label><br>
-            <label for="" class="font-weight-bold my-2">Indicaciones especiales del servicio: ' . utf8_encode($serviciof['descripcion']) . '</label><br>
+            <label for="" class="font-weight-bold my-2">Indicaciones especiales del servicio: ' . $serviciof['descripcion'] . '</label><br>
           </div>
         </div>
       </div>
@@ -160,19 +169,19 @@ echo '
         </div>
         <div class="row bg-light">
           <div class="col-sm-2 border-right border-dark text-center">
-            <label for="" class="font-weight-bold">' . $ordenf['cantidad'] . '</label>
+            <label for="" class="font-weight-bold">' . $porciones[1] . '</label>
           </div>
           <div class="col-sm-1 border-dark border-right text-center">
-            <label for="" class="font-weight-bold">' . $ordenf['unidad'] . '</label>
+            <label for="" class="font-weight-bold">kg</label>
           </div>
           <div class="col-sm-6 border-dark border-right text-center">
-            <label for="" class="font-weight-bold">' . utf8_encode($ordenf['concepto']) . '</label>
+            <label for="" class="font-weight-bold">' . $porciones[0] . '</label>
           </div>
           <div class="col-sm-2 border-dark border-right text-center">
-            <label for="" class="font-weight-bold">' . $ordenf['manifiesto'] . '</label>
+            <label for="" class="font-weight-bold">S/N</label>
           </div>
           <div class="col-sm-1 border-dark text-center">
-            <label for="" class="font-weight-bold">' . $ordenf['factura'] . '</label>
+            <label for="" class="font-weight-bold">S/N</label>
           </div>
         </div>
         <div class="row bg-light">
@@ -265,9 +274,9 @@ echo '
             <label for="" class="font-weight-bold">14-. Conformidad del Generador con el servicio: </label>
           </div>
           <div class="col-sm-12 mt-1">
-            <label for="" class="font-weight-bold">Nombre: </label><br>
+            <label for="" class="font-weight-bold">Nombre: ' . $confirmacionf['nombre'] . '  </label><br>
             <label for="" class="font-weight-bold">Firma: </label><br>
-            <label for="" class="font-weight-bold">Puesto: </label><br>
+            <label for="" class="font-weight-bold">Puesto: ' . $confirmacionf['cargo'] . ' </label><br>
           </div>
         </div>
       </div>
@@ -278,9 +287,9 @@ echo '
           </div>
           <div class="col-sm-12">
             <label for="" class="font-weight-bold my-2">Nombre y firma del
-              Operador: </label><br>
+              Operador: ' . utf8_encode($serviciof['operador']) . ' </label><br>
             <label for="" class="font-weight-bold my-2">Nombre del
-              Supervisor: </label><br>
+              Supervisor: ' . utf8_encode($serviciof['supervisor']) . ' </label><br>
             <label for="" class="font-weight-bold my-2">Firma del Supervisor: </label>
           </div>
         </div>
