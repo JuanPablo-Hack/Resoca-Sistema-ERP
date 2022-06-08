@@ -64,7 +64,7 @@ echo '
             <label for="" class="font-weight-bold">1-. N° de Orden: ' . $ordenf['id'] . '</label>
           </div>
           <div class="col-sm-12">
-            <label for="" class="font-weight-bold">3-. Fecha: ' . strftime('%d-%m-%Y', strtotime($ordenf['creado'])) . '</label>
+            <label for="" class="font-weight-bold">3-. Fecha: ' . strftime('%d-%m-%Y', strtotime($ordenf['fecha'])) . '</label>
           </div>
         </div>
       </div>
