@@ -139,7 +139,7 @@ if ($Row = mysqli_fetch_array($result)) {
                 <div class="form-group last">
                   <label class="control-label col-md-3">Firma de conformidad</label>
                   <div class="col-md-9">
-                    <canvas id="canvas" style="border: 1px solid #000;"></canvas>
+                    <canvas id="canvas" style="border: 1px solid #000;  width: 250px; height: 150px;"></canvas>
                   </div>
                 </div>
                 <div class="form-group">
@@ -276,15 +276,10 @@ if ($Row = mysqli_fetch_array($result)) {
     //======================================================================
     // EVENTOS
     //======================================================================
-
-    // Eventos raton
-    miCanvas.addEventListener("mousedown", empezarDibujo, false);
-    miCanvas.addEventListener("mousemove", dibujarLinea, false);
-    miCanvas.addEventListener("mouseup", pararDibujar, false);
-
     // Eventos pantallas táctiles
     miCanvas.addEventListener("touchstart", empezarDibujo, false);
     miCanvas.addEventListener("touchmove", dibujarLinea, false);
+    
     document.addEventListener("DOMContentLoaded", function() {
       document
         .getElementById("formConfirmar")
