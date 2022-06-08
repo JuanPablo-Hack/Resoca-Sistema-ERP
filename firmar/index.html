@@ -104,6 +104,12 @@
       //======================================================================
       // EVENTOS
       //======================================================================
+
+      // Eventos raton
+      miCanvas.addEventListener("mousedown", empezarDibujo, false);
+      miCanvas.addEventListener("mousemove", dibujarLinea, false);
+      miCanvas.addEventListener("mouseup", pararDibujar, false);
+
       // Eventos pantallas táctiles
       miCanvas.addEventListener("touchstart", empezarDibujo, false);
       miCanvas.addEventListener("touchmove", dibujarLinea, false);
