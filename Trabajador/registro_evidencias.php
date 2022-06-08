@@ -66,7 +66,7 @@ $result6 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result2)) {
                         ?>
-                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['clave']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -90,7 +90,7 @@ $result6 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result3)) {
                         ?>
-                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['clave']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -113,7 +113,7 @@ $result6 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result4)) {
                         ?>
-                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['clave']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -136,7 +136,7 @@ $result6 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result5)) {
                         ?>
-                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['clave']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
@@ -159,7 +159,7 @@ $result6 = mysqli_query($conexion, $sql2);
                         <?php
                         while ($Row1 = mysqli_fetch_array($result6)) {
                         ?>
-                          <option value=<?php echo $Row1['nombre']; ?>><?php echo $Row1['nombre']; ?></option>
+                          <option value=<?php echo $Row1['clave']; ?>><?php echo $Row1['nombre']; ?></option>
                         <?php
                         }
                         ?>
