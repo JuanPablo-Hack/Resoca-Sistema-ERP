@@ -274,9 +274,9 @@ echo '
             <label for="" class="font-weight-bold">14-. Conformidad del Generador con el servicio: </label>
           </div>
           <div class="col-sm-12 mt-1">
-            <label for="" class="font-weight-bold">Nombre: ' . $confirmacionf['nombre'] . '  </label><br>
+            <label for="" class="font-weight-bold">Nombre:  </label><br>
             <label for="" class="font-weight-bold">Firma: </label><br>
-            <label for="" class="font-weight-bold">Puesto: ' . $confirmacionf['cargo'] . ' </label><br>
+            <label for="" class="font-weight-bold">Puesto:  </label><br>
           </div>
         </div>
       </div>
