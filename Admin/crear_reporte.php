@@ -20,12 +20,12 @@ $result = mysqli_query($conexion, $sql);
           <!--  DATE PICKERS -->
           <div class="col-lg-12">
             <div class="form-panel">
-              <form action="php/crear_corte.php" class="form-horizontal style-form" method="POST">
+              <form class="form-horizontal style-form" id="FormCorte">
                 <div class="form-group">
                   <label class="control-label col-md-3">Fecha de inicio de corte</label>
                   <div class="col-md-3 col-xs-11">
-                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2022" class="input-append date dpYears">
-                      <input type="text" readonly="" value="01-01-2014" size="16" name='fecha' class="form-control">
+                    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="2022-01-01" class="input-append date dpYears">
+                      <input type="text" readonly="" value="2022-01-01" size="16" name='fecha_inicio' class="form-control">
                       <span class="input-group-btn add-on">
                         <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                       </span>
@@ -36,8 +36,8 @@ $result = mysqli_query($conexion, $sql);
                 <div class="form-group">
                   <label class="control-label col-md-3">Fecha de termino de corte</label>
                   <div class="col-md-3 col-xs-11">
-                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2022" class="input-append date dpYears">
-                      <input type="text" readonly="" value="01-01-2014" size="16" name='fecha' class="form-control">
+                    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="2022-01-01" class="input-append date dpYears">
+                      <input type="text" readonly="" value="2022-01-01" size="16" name='fecha_fin' class="form-control">
                       <span class="input-group-btn add-on">
                         <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                       </span>
@@ -107,6 +107,76 @@ $result = mysqli_query($conexion, $sql);
   <script type="text/javascript" src="../assets/lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="../assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="../assets/lib/advanced-form-components.js"></script>
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document
+        .getElementById("FormCorte")
+        .addEventListener("submit", crearCorte);
+    });
+    async function crearCorte(e) {
+      e.preventDefault();
+      var form = document.getElementById("FormCorte");
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Estas seguro que la información es la correcta?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, crear corte",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            let data = new FormData(form);
+            // data.append("accion", "agregar");
+            fetch("php/corte_controller.php", {
+                method: "POST",
+                body: data,
+              })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  swalWithBootstrapButtons.fire(
+                    "Agregado!",
+                    "La orden ha sido agregado en la base de datos.",
+                    "success"
+                  );
+                  form.reset();
+                  setTimeout(function() {
+                    location.reload();
+                  }, 2000);
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Error",
+                    "Hemos tenido un error a la base de datos o la conexión.",
+                    "error"
+                  );
+                  // setTimeout(function() {
+                  //   location.reload();
+                  // }, 2000);
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Revise su información de nuevo",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
 
 </body>
 
