@@ -114,6 +114,15 @@ $result = mysqli_query($conexion, $sql);
         .getElementById("FormCorte")
         .addEventListener("submit", crearCorte);
     });
+
+    function addScript(url) {
+      var script = document.createElement('script');
+      script.type = 'application/javascript';
+      script.src = url;
+      document.head.appendChild(script);
+    }
+    addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
+
     async function crearCorte(e) {
       e.preventDefault();
       var form = document.getElementById("FormCorte");
@@ -135,35 +144,33 @@ $result = mysqli_query($conexion, $sql);
         })
         .then((result) => {
           if (result.isConfirmed) {
-            let data = new FormData(form);
-            // data.append("accion", "agregar");
-            fetch("php/corte_controller.php", {
-                method: "POST",
-                body: data,
-              })
-              .then((result) => result.text())
-              .then((result) => {
-                if (result == 1) {
-                  swalWithBootstrapButtons.fire(
-                    "Agregado!",
-                    "La orden ha sido agregado en la base de datos.",
-                    "success"
-                  );
-                  form.reset();
-                  setTimeout(function() {
-                    location.reload();
-                  }, 2000);
-                } else {
-                  swalWithBootstrapButtons.fire(
-                    "Error",
-                    "Hemos tenido un error a la base de datos o la conexión.",
-                    "error"
-                  );
-                  // setTimeout(function() {
-                  //   location.reload();
-                  // }, 2000);
-                }
-              });
+            var opt = {
+              margin: 1,
+              filename: 'Corte.pdf',
+              image: {
+                type: 'jpeg',
+                quality: 0.98
+              },
+              html2canvas: {
+                scale: 3
+              },
+              jsPDF: {
+                unit: 'in',
+                format: 'a3',
+                orientation: 'portrait'
+              }
+            };
+            var data = new FormData(this);
+            $.ajax({
+              url: 'php/cortesPDF.php',
+              type: 'POST',
+              data: data,
+              processData: false, // tell jQuery not to process the data
+              contentType: false, // tell jQuery not to set contentType,
+              success: function(r) {
+                var worker = html2pdf().set(opt).from(r).toPdf().save();
+              }
+            });
           } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
