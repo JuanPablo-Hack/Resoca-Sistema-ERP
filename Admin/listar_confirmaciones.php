@@ -11,6 +11,75 @@ include 'php/conexion.php';
 <body>
   <section id="container">
     <?php include 'templates/nav.php'; ?>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+            <a href="#"><img src="../assets/img/banner.png" class="img-circle" width="80"></a>
+          </p>
+          <h5 class="centered">Admin</h5>
+          <li class="mt">
+            <a href="index.php">
+              <i class="fa fa-dashboard"></i>
+              <span>Panel de Control</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="active" href="javascript:;">
+              <i class="fa fa-calendar"></i>
+              <span>Ordenes de Servicios</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_orden.php">Bitacora</a></li>
+              <li><a href="calendar.php">Calendario</a></li>
+              <li><a href="listar_servicios.php">Lista de Servicios</a></li>
+              <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
+              <li class="active"><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
+              <li><a href="listar_catalogo.php">Catalogo de Conceptos</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a dhref="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Administración</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_reportes.php">Bitacora de Corte</a></li>
+              <li><a href="listar_manifiesto.php">Bitacora de Manifiestos</a></li>
+              <li><a href="listar_acuses.php">Bitacora de Acuses</a></li>
+            </ul>
+          </li>
+
+          <li class="sub-menu">
+            <a href="reportes_imades.php">
+              <i class="fa fa-bar-chart-o"></i>
+              <span>Reporte Imades</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-car"></i>
+              <span>Unidades</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_unidades.php">Bitacora</a></li>
+              <li><a href="listar_mantenimientos.php">Mantenimientos</a></li>
+              <li><a href="listar_combustible.php">Bitacora de combustibles</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-group"></i>
+              <span>Usuarios</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_trabajador.php">Trabajadores</a></li>
+              <li><a href="listar_clientes.php">Clientes</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
     <section id="main-content">
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Bitacora Confirmaciones</h3>
@@ -81,129 +150,9 @@ include 'php/conexion.php';
   <!--common script for all pages-->
   <script src="../assets/lib/common-scripts.js"></script>
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
-  <script src="js/controller.js"></script>
-  <!--script for this page-->
-  <!-- PDF -->
+  <script src="js/confirmacion.js"></script>
 
-  <script>
-    function addScript(url) {
-      var script = document.createElement('script');
-      script.type = 'application/javascript';
-      script.src = url;
-      document.head.appendChild(script);
-    }
-    addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
 
-    function crearPDF(id) {
-      var opt = {
-        margin: 1,
-        filename: 'Orden.pdf',
-        image: {
-          type: 'jpeg',
-          quality: 0.98
-        },
-        html2canvas: {
-          scale: 3
-        },
-        jsPDF: {
-          unit: 'in',
-          format: 'a3',
-          orientation: 'portrait'
-        }
-      };
-
-      $.ajax({
-        type: 'POST',
-        data: "id=" + id,
-        url: 'php/ordenesPDF.php',
-        success: function(r) {
-          // console.log(r);
-          var worker = html2pdf().set(opt).from(r).toPdf().save();
-
-        }
-      });
-    }
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      /*
-       * Initialse DataTables, with no sorting on the 'details' column
-       */
-      var oTable = $('#hidden-table-info').dataTable({
-        "aoColumnDefs": [{
-          "bSortable": true,
-          "aTargets": [0]
-        }],
-        "aaSorting": [
-          [0, 'asc']
-        ]
-      });
-    });
-  </script>
-  <script>
-    function eliminarConfirmacion(id) {
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-success",
-          cancelButton: "btn btn-danger",
-        },
-        buttonsStyling: false,
-      });
-
-      swalWithBootstrapButtons
-        .fire({
-          title: "Estas seguro?",
-          text: "¡No podrás revertir esto!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Si, eliminar",
-          cancelButtonText: "No, cancelar!",
-          reverseButtons: true,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            let data = new FormData();
-            data.append("id", id);
-            data.append("accion", "eliminar");
-            fetch("php/confirmacion_controller.php", {
-                method: "POST",
-                body: data,
-              })
-              .then((result) => result.text())
-              .then((result) => {
-                if (result == 1) {
-                  swalWithBootstrapButtons.fire(
-                    "Eliminado!",
-                    "Su archivo ha sido eliminado.",
-                    "success"
-                  );
-                  setTimeout(function() {
-                    location.reload();
-                  }, 3000);
-                } else {
-                  swalWithBootstrapButtons.fire(
-                    "Error",
-                    "Hemos tenido un error a la base de datos o la conexión.",
-                    "error"
-                  );
-                  //   setTimeout(function () {
-                  //     location.reload();
-                  //   }, 3000);
-                }
-              });
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              "Cancelado",
-              "Tu archivo ha sido salvado",
-              "error"
-            );
-          }
-        });
-    }
-  </script>
 </body>
 
 </html>

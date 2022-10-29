@@ -11,52 +11,77 @@ include 'php/conexion.php';
 <body>
   <section id="container">
     <?php include 'templates/nav.php'; ?>
-    <section id="main-content">
-      <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Bitacora de Evidencias</h3>
-        <div class="row mb">
-          <!-- page start-->
-          <div class="content-panel">
-            <div class="adv-table">
-              <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
-                <thead>
-                  <tr>
-                    <th class="hidden-phone">Evidencia</th>
-                    <th>Folio</th>
-                    <th>Ticket</th>
-                    <th class="hidden-phone">Fecha del Servicio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $sql = "SELECT * FROM evidencias";
-                  $resultado = $conexion->query($sql);
-                  while ($mostrar = mysqli_fetch_array($resultado)) {
-                  ?>
-                    <tr>
-                      <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
-                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
-                      <td><?php echo $mostrar['ticket'] ?></td>
-                      <td><?php
-                          $sql1 = "SELECT * FROM ordenes WHERE id='" . $mostrar['folio'] . "'";
-                          $result1 = mysqli_query($conexion, $sql1);
-                          $Row = mysqli_fetch_array($result1);
-                          echo $Row['fecha'];
-                          ?></td>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+            <a href="#"><img src="../assets/img/banner.png" class="img-circle" width="80"></a>
+          </p>
+          <h5 class="centered">Admin</h5>
+          <li class="mt">
+            <a href="index.php">
+              <i class="fa fa-dashboard"></i>
+              <span>Panel de Control</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="active" href="javascript:;">
+              <i class="fa fa-calendar"></i>
+              <span>Ordenes de Servicios</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_orden.php">Bitacora</a></li>
+              <li><a href="calendar.php">Calendario</a></li>
+              <li><a href="listar_servicios.php">Lista de Servicios</a></li>
+              <li class="active"><a href="listar_evidencias.php">Lista de Evidencias</a></li>
+              <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
+              <li><a href="listar_catalogo.php">Catalogo de Conceptos</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a dhref="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Administración</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_reportes.php">Bitacora de Corte</a></li>
+              <li><a href="listar_manifiesto.php">Bitacora de Manifiestos</a></li>
+              <li><a href="listar_acuses.php">Bitacora de Acuses</a></li>
+            </ul>
+          </li>
 
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- page end-->
-        </div>
-        <!-- /row -->
-      </section>
-      <!-- /wrapper -->
+          <li class="sub-menu">
+            <a href="reportes_imades.php">
+              <i class="fa fa-bar-chart-o"></i>
+              <span>Reporte Imades</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-car"></i>
+                            <span>Unidades</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="listar_unidades.php">Bitacora</a></li>
+                            <li><a href="listar_mantenimientos.php">Mantenimientos</a></li>
+                            <li><a href="listar_combustible.php">Bitacora de combustibles</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-group"></i>
+                            <span>Usuarios</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="listar_trabajador.php">Trabajadores</a></li>
+                            <li><a href="listar_clientes.php">Clientes</a></li>
+                        </ul>
+                    </li>
+        </ul>
+      </div>
+    </aside>
+    <section id="main-content">
+      <?php include 'views/evidencias/listar.php'; ?>
     </section>
     <?php include 'templates/footer.php'; ?>
   </section>
@@ -71,22 +96,9 @@ include 'php/conexion.php';
   <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
   <script src="../assets/lib/common-scripts.js"></script>
-  <script src="js/controller.js"></script>
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <!--script for this page-->
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var oTable = $("#hidden-table-info").dataTable({
-        aoColumnDefs: [{
-          bSortable: false,
-          aTargets: [0],
-        }, ],
-        aaSorting: [
-          [1, "asc"]
-        ],
-      });
-    });
-  </script>
+  <script src="js/evidencias.js"></script>
 </body>
 
 </html>

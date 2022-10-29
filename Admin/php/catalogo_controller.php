@@ -7,7 +7,7 @@ switch ($_POST['accion']) {
         editar_catalogo($_POST['id'], $_POST['nombre'], $_POST['clave'], $_POST['precio']);
         break;
     case 'eliminar':
-        eliminar_orden($_POST['id']);
+        eliminar_catalogo($_POST['id']);
         break;
 }
 
@@ -33,10 +33,10 @@ function editar_catalogo($id, $nombre, $clave, $precio)
         echo 0;
     }
 }
-function eliminar_orden($id)
+function eliminar_catalogo($id)
 {
     include './conexion.php';
-    $sql = "DELETE FROM ordenes WHERE id='" . $id . "'";
+    $sql = "DELETE FROM catalogo WHERE id='" . $id . "'";
     $result = mysqli_query($conexion, $sql);
     if (!$result) {
         echo 2;

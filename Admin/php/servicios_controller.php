@@ -10,6 +10,7 @@ switch ($_POST['accion']) {
         eliminar_servicio($_POST['id']);
         break;
 }
+//TODO: cambiar la base de datos para solo meter el Id de la unidad
 function crear_servicio($nombre, $tipo, $descripcion, $supervisor, $operador, $auxiliar, $modelo, $placas, $nombre_destino, $ubicacion, $descripcion_material, $descripcion_equipo)
 {
     include './conexion.php';

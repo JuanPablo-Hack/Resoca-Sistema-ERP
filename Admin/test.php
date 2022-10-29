@@ -25,7 +25,7 @@ include 'php/conexion.php';
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a class="active" href="javascript:;">
+                        <a href="javascript:;">
                             <i class="fa fa-calendar"></i>
                             <span>Ordenes de Servicios</span>
                         </a>
@@ -35,7 +35,7 @@ include 'php/conexion.php';
                             <li><a href="listar_servicios.php">Lista de Servicios</a></li>
                             <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
                             <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
-                            <li class="active"><a href="listar_catalogo.php">Catalogo de Conceptos</a></li>
+                            <li><a href="listar_catalogo.php">Catalogo de Conceptos</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
@@ -86,7 +86,7 @@ include 'php/conexion.php';
                 <div class="row mb">
                     <!-- page start-->
                     <div class="content-panel">
-                        <?php include 'views/conceptos/listar.php'; ?>
+                        <?php include 'views/clientes/listar.php'; ?>
                     </div>
                     <!-- page end-->
                 </div>
@@ -110,7 +110,7 @@ include 'php/conexion.php';
     <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
     <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="js/conceptos.js"></script>
+    <script src="js/clientes.js"></script>
 
 </body>
 
