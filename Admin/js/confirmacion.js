@@ -9,7 +9,7 @@ $(document).ready(function () {
         aTargets: [0],
       },
     ],
-    aaSorting: [[0, "asc"]],
+    aaSorting: [[4, "asc"]],
   });
 });
 function eliminarConfirmacion(id) {

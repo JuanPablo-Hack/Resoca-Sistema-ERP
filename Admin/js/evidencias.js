@@ -45,7 +45,7 @@ $(document).ready(function () {
         aTargets: [0],
       },
     ],
-    aaSorting: [[1, "asc"]],
+    aaSorting: [[2, "asc"]],
   });
 
   /* Add event listener for opening and closing details

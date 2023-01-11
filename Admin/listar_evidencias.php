@@ -90,8 +90,9 @@ include 'php/conexion.php';
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th class="hidden-phone">Evidencia</th>
+
                     <th>Folio</th>
+                    <th class="hidden-phone">Evidencia</th>
                     <th>Ticket</th>
                     <th class="hidden-phone">Fecha del Servicio</th>
                     <th class="hidden-phone">Acciones</th>
@@ -104,8 +105,8 @@ include 'php/conexion.php';
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
                     <tr>
-                      <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
+                      <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
                       <td><?php
                           $sql1 = "SELECT * FROM ordenes WHERE id='" . $mostrar['folio'] . "'";
@@ -155,7 +156,7 @@ include 'php/conexion.php';
           aTargets: [0],
         }, ],
         aaSorting: [
-          [1, "asc"]
+          [3, "asc"]
         ],
       });
     });
