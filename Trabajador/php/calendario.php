@@ -9,7 +9,7 @@ class DB
 
     public function __construct()
     {
-        $this->host     = '213.190.6.1';
+        $this->host     = 'sql199.main-hosting.eu';
         $this->db       = 'u298097659_resoca';
         $this->user     = 'u298097659_resoca';
         $this->password = '4so|8PVj>zR';
