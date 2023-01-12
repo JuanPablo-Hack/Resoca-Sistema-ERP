@@ -4,14 +4,28 @@ function fnFormatDetails(oTable, nTr) {
   var sOut =
     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
   sOut +=
-    "<tr><td>Rendering engine:</td><td>" +
-    aData[1] +
+    "<tr><td>Litros:</td><td>" +
+    aData[9] +
     " " +
     aData[4] +
-    "</td></tr>";
-  sOut += "<tr><td>Link to source:</td><td>Could provide a link here</td></tr>";
+    "</td>" +
+    "<td>Rendimiento:</td><td>" +
+    aData[10] +
+    "</tr>";
   sOut +=
-    "<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>";
+    "<tr><td>Km Inicial:</td><td>" +
+    aData[6] +
+    "</td>" +
+    "<td>KM Final:</td><td>" +
+    aData[7] +
+    "</tr>";
+  sOut +=
+    "<tr><td>Factura:</td><td>" +
+    aData[11] +
+    "</td>" +
+    "<td>Importe:</td><td>" +
+    aData[12] +
+    "</tr>";
   sOut += "</table>";
 
   return sOut;

@@ -13,12 +13,19 @@
                         <th class="numeric">Fecha</th>
                         <th class="hidden-phone">Tipo Servicio</th>
                         <th class="numeric">Operador</th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM registros_mantenimiento";
+                    $sql = "SELECT * FROM registros_combustible";
                     $resultado = $conexion->query($sql);
                     while ($mostrar = mysqli_fetch_array($resultado)) {
                     ?>
@@ -42,6 +49,13 @@
                                                                                                                         }
                                                                                                                         echo $nombre;
                                                                                                                         ?></a></td>
+                            <td style="display: none;"><?php echo $mostrar['kminicial'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['kmfinal'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['tiposervicio'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['litros'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['rendimiento'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['factura'] ?></td>
+                            <td style="display: none;"><?php echo $mostrar['importe'] ?></td>
                             <td>
                                 <button class="btn btn-primary btn-xs" title="Editar Orden" data-toggle="modal" data-target="#EditarCombustibles<?php echo $mostrar['id'] ?>"><i class="fa fa-pencil"></i></button>
                                 <a onclick="eliminarCombustible(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs" title="Eliminar Servicio"> <i class="fa fa-trash-o "></i></a>

@@ -1,3 +1,4 @@
+/* Formating function for row details */
 function fnFormatDetails(oTable, nTr) {
   var aData = oTable.fnGetData(nTr);
   var sOut =
@@ -64,3 +65,33 @@ $(document).ready(function () {
     }
   });
 });
+<<<<<<< HEAD
+=======
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("Form_Corte").addEventListener("submit", crearCorte);
+});
+async function crearCorte(e) {
+  e.preventDefault();
+  var form = document.getElementById("Form_Corte");
+  let data = new FormData(form);
+  data.append("accion", "agregar");
+  fetch("php/cortes_controller.php", {
+    method: "POST",
+    body: data,
+  })
+    .then((result) => result.text())
+    .then((result) => {
+      if (result == 1) {
+        document.getElementById("success").style.display = "inherit";
+        document.getElementById("wrong").style.display = "none";
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+      } else {
+        document.getElementById("success").style.display = "none";
+        document.getElementById("wrong").style.display = "inherit";
+      }
+    });
+}
+>>>>>>> 369e6abc980240ba11250c4c791ac018aff7a173

@@ -81,11 +81,24 @@ include 'php/conexion.php';
       </div>
     </aside>
     <section id="main-content">
-      <?php include 'views/cortes/listar.php'; ?>
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Bitacora de Cortes</h3>
+        <div class="row mb">
+          <div class="content-panel">
+            <?php include 'views/cortes/listar.php'; ?>
+          </div>
+        </div>
+      </section>
     </section>
     <?php include 'templates/footer.php'; ?>
   </section>
-  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="../assets/lib/jquery/jquery.min.js"></script>
+  <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/lib/jquery.scrollTo.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+  <script src="../assets/lib/common-scripts.js"></script>
   <script src="../assets/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.js"></script>
   <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -94,9 +107,14 @@ include 'php/conexion.php';
   <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
   <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+<<<<<<< HEAD
   <script src="../assets/lib/common-scripts.js"></script>
   <script src="js/cortes.js"></script>
 
+=======
+  <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="js/cortes.js"></script>
+>>>>>>> 369e6abc980240ba11250c4c791ac018aff7a173
 
 </body>
 
