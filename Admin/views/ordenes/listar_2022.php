@@ -1,9 +1,4 @@
 <section class="wrapper">
-    <div class="row mt">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Agregar Orden de Servicio</button>
-        <?php include 'views/ordenes/agregar.php'; ?>
-    </div>
-    <br>
     <div class="form-group">
         <div class="col-sm-4">
             <select class="form-control" onchange="Mostrar_Tabla_Año()" id="filtro_ano">
@@ -29,7 +24,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM ordenes";
+                    $sql = "SELECT * FROM ordenes_2022";
                     $resultado = $conexion->query($sql);
                     while ($mostrar = mysqli_fetch_array($resultado)) {
                     ?>

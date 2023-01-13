@@ -47,10 +47,6 @@ $(document).ready(function () {
     ],
   });
 
-  /* Add event listener for opening and closing details
-   * Note that the indicator for showing which row is open is not controlled by DataTables,
-   * rather it is done here
-   */
   $("#hidden-table-info tbody td img").live("click", function () {
     var nTr = $(this).parents("tr")[0];
     if (oTable.fnIsOpen(nTr)) {
@@ -65,6 +61,25 @@ $(document).ready(function () {
   });
 });
 
+function Mostrar_Tabla_Año() {
+  var Año_Seleccionado = document.getElementById("filtro_ano").value;
+  var sistema = geturl();
+  if (Año_Seleccionado == 2022) {
+    location.href = sistema + "historico_2022.php";
+  } else {
+    location.href = sistema + "listar_orden.php";
+  }
+}
+
+function geturl() {
+  var loc = window.location;
+  var pathname = loc.pathname.substring(0, loc.pathname.lastIndexOf("/") + 1);
+  return loc.href.substring(
+    0,
+    loc.href.length -
+      ((loc.pathname + loc.search + loc.hash).length - pathname.length)
+  );
+}
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("Form_Orden").addEventListener("submit", crearOrden);
 });
@@ -152,4 +167,42 @@ function eliminarOrden(id) {
         );
       }
     });
+}
+
+function addScript(url) {
+  var script = document.createElement("script");
+  script.type = "application/javascript";
+  script.src = url;
+  document.head.appendChild(script);
+}
+addScript(
+  "https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"
+);
+
+function crearPDF(id) {
+  var opt = {
+    margin: 1,
+    filename: "Orden.pdf",
+    image: {
+      type: "jpeg",
+      quality: 0.98,
+    },
+    html2canvas: {
+      scale: 3,
+    },
+    jsPDF: {
+      unit: "in",
+      format: "a3",
+      orientation: "portrait",
+    },
+  };
+
+  $.ajax({
+    type: "POST",
+    data: "id=" + id,
+    url: "php/ordenesPDF.php",
+    success: function (r) {
+      var worker = html2pdf().set(opt).from(r).toPdf().save();
+    },
+  });
 }
