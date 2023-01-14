@@ -84,17 +84,25 @@ include 'php/conexion.php';
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Bitacora de Evidencias</h3>
         <div class="row mb">
-          <!-- page start-->
           <div class="content-panel">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <select class="form-control" onchange="Mostrar_Tabla_Año()" id="filtro_ano">
+                  <option value="0">-Seleccione un opción-</option>
+                  <option value="2022">Historico 2022</option>
+                  <option value="2023">Historico 2023</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <br>
             <div class="adv-table">
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-
                     <th>Folio</th>
                     <th class="hidden-phone">Evidencia</th>
                     <th>Ticket</th>
-                    <th class="hidden-phone">Fecha del Servicio</th>
                     <th class="hidden-phone">Acciones</th>
                   </tr>
                 </thead>
@@ -108,12 +116,7 @@ include 'php/conexion.php';
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
                       <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
-                      <td><?php
-                          $sql1 = "SELECT * FROM ordenes WHERE id='" . $mostrar['folio'] . "'";
-                          $result1 = mysqli_query($conexion, $sql1);
-                          $Row = mysqli_fetch_array($result1);
-                          echo $Row['fecha'];
-                          ?></td>
+
                       <td>
 
                         <a onclick="eliminarEvidencia(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
@@ -147,20 +150,7 @@ include 'php/conexion.php';
   <script src="../assets/lib/common-scripts.js"></script>
   <script src="js/controller.js"></script>
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
-  <!--script for this page-->
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var oTable = $("#hidden-table-info").dataTable({
-        aoColumnDefs: [{
-          bSortable: false,
-          aTargets: [0],
-        }, ],
-        aaSorting: [
-          [3, "asc"]
-        ],
-      });
-    });
-  </script>
+  <script src="js/evidencias.js"></script>
 </body>
 
 </html>

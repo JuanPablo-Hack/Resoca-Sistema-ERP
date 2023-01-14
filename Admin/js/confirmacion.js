@@ -74,3 +74,23 @@ function eliminarConfirmacion(id) {
       }
     });
 }
+
+function Mostrar_Tabla_Año() {
+  var Año_Seleccionado = document.getElementById("filtro_ano").value;
+  var sistema = geturl();
+  if (Año_Seleccionado == 2022) {
+    location.href = sistema + "confirmaciones_2022.php";
+  } else {
+    location.href = sistema + "listar_confirmaciones.php";
+  }
+}
+
+function geturl() {
+  var loc = window.location;
+  var pathname = loc.pathname.substring(0, loc.pathname.lastIndexOf("/") + 1);
+  return loc.href.substring(
+    0,
+    loc.href.length -
+      ((loc.pathname + loc.search + loc.hash).length - pathname.length)
+  );
+}

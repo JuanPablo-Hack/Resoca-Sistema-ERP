@@ -85,6 +85,17 @@ include 'php/conexion.php';
         <h3><i class="fa fa-angle-right"></i> Bitacora Confirmaciones</h3>
         <div class="row mb">
           <div class="content-panel">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <select class="form-control" onchange="Mostrar_Tabla_Año()" id="filtro_ano">
+                  <option value="0">-Seleccione un opción-</option>
+                  <option value="2022">Historico 2022</option>
+                  <option value="2023">Historico 2023</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <br>
             <div class="adv-table">
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
@@ -110,13 +121,7 @@ include 'php/conexion.php';
                       <td><?php echo $mostrar['cargo'] ?></td>
                       <td><?php echo $mostrar['creado'] ?></a></td>
                       <td>
-
-
-                        <a href='./editar_confirmacion.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs" title="Editar Orden"><i class="fa fa-pencil"></i></a>
                         <a onclick="eliminarConfirmacion(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs" title="Eliminar Orden"> <i class="fa fa-trash-o "></i></a>
-
-
-
                       </td>
                     </tr>
                   <?php
@@ -135,7 +140,7 @@ include 'php/conexion.php';
     <!-- /MAIN CONTENT -->
     <!--main content end-->
     <!--footer start-->
-    <?php include 'templates/footer.php'; ?>../assets/
+    <?php include 'templates/footer.php'; ?>
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
