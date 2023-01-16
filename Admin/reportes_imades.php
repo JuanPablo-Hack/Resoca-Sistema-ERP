@@ -77,47 +77,88 @@
         </ul>
       </div>
     </aside>
+    <?php include 'php/graficas.php'; ?>
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> Morris Charts</h3>
+        <h3><i class="fa fa-angle-right"></i> Reporte Imades</h3>
         <!-- page start-->
-        <div id="morris">
-          <div class="row mt">
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Gráfica de Ordenes Realizadas</h4>
-                <div class="panel-body">
-                  <div id="hero-graph" class="graph"></div>
-                </div>
-              </div>
+
+        <div class="col-lg-12 main-chart">
+          <!--CUSTOM CHART START -->
+          <div class="border-head">
+            <h3>Residuo Recolectado</h3>
+          </div>
+          <div class="custom-bar-chart">
+            <ul class="y-axis">
+              <li><span>10.000</span></li>
+              <li><span>8.000</span></li>
+              <li><span>6.000</span></li>
+              <li><span>4.000</span></li>
+              <li><span>2.000</span></li>
+              <li><span>0</span></li>
+            </ul>
+            <div class="bar">
+              <div class="title">ENE</div>
+              <div class="value tooltips" data-original-title="<?php echo $datos = obtener_residuo_total('2023-01-01', '2023-01-31'); ?>" data-toggle="tooltip" data-placement="top"><?php echo obtener_porcentaje_residuo($datos); ?>%</div>
             </div>
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Gráfica de residuous recolectados</h4>
-                <div class="panel-body">
-                  <div id="hero-bar" class="graph"></div>
-                </div>
-              </div>
+            <div class="bar ">
+              <div class="title">FEB</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+            </div>
+            <div class="bar ">
+              <div class="title">MAR</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+            </div>
+            <div class="bar ">
+              <div class="title">ABR</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+            </div>
+            <div class="bar">
+              <div class="title">MAY</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+            </div>
+            <div class="bar ">
+              <div class="title">JUN</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+            </div>
+            <div class="bar">
+              <div class="title">JUL</div>
+              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
             </div>
           </div>
+          <!--custom chart end-->
           <div class="row mt">
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Estadisticas de ordenes de servicios</h4>
-                <div class="panel-body">
-                  <div id="hero-area" class="graph"></div>
+            <div class="col-md-12 col-sm-12 mb">
+              <div class="grey-panel pn donut-chart">
+                <div class="grey-header">
+                  <h5>Residuos Generados</h5>
+                </div>
+                <canvas id="serverstatus01" height="120" width="120"></canvas>
+                <script>
+                  var doughnutData = [{
+                    value: <?php echo obtener_porcentaje_residuo($datos); ?>,
+                    color: "#FF6B6B"
+                  }, {
+                    value: <?php echo 100 - obtener_porcentaje_residuo($datos); ?>,
+                    color: "#fdfdfd"
+                  }];
+                  var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                </script>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-6 goleft">
+                    <p>Total<br />de Residuos:</p>
+                  </div>
+                  <div class="col-sm-6 col-xs-6">
+                    <h2><?php echo obtener_porcentaje_residuo($datos); ?>%</h2>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Cantidad de residuos recolectados</h4>
-                <div class="panel-body">
-                  <div id="hero-donut" class="graph"></div>
-                </div>
-              </div>
+              <!-- /grey-panel -->
             </div>
           </div>
+          <!-- /row -->
+
+          <!-- /row -->
         </div>
         <!-- page end-->
       </section>
