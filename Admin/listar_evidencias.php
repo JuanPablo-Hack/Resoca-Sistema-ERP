@@ -103,6 +103,7 @@ include 'php/conexion.php';
                     <th>Folio</th>
                     <th class="hidden-phone">Evidencia</th>
                     <th>Ticket</th>
+                    <th>Fecha</th>
                     <th class="hidden-phone">Acciones</th>
                   </tr>
                 </thead>
@@ -116,7 +117,7 @@ include 'php/conexion.php';
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
                       <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
-
+                      <td><?php echo $mostrar['creado'] ?></td>
                       <td>
 
                         <a onclick="eliminarEvidencia(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i></a>
