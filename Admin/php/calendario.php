@@ -37,7 +37,7 @@ class DB
 
 $conexion = new DB();
 
-$query = $conexion->connect()->query("SELECT * FROM ordenes INNER JOIN clientes ON ordenes.cliente = clientes.id");
+$query = $conexion->connect()->query("SELECT * FROM evidencias");
 $query->execute();
 $json = $query->fetchAll();
 
@@ -46,7 +46,7 @@ $temparray = array();
 
 foreach ($json as $j) {
 
-    $temparray = array("title" => $j['concepto'], "start" => strftime('%Y-%m-%d', strtotime($j['fecha'])), "cliente" => $j['nombre'], "estado" => $j['estado'], "cantidad" => $j['cantidad']);
+    $temparray = array("title" => $j['folio'], "start" => strftime('%Y-%m-%d', strtotime($j['creado'])), "cliente" => $j['ticket'], "estado" => $j['num_conceptos'], "cantidad" => $j['arreglo']);
     array_push($array, $temparray);
 }
 
