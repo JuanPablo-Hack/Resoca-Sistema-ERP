@@ -1,21 +1,15 @@
 <?php
 include 'conexion.php';
-$fecha_inicio = $_POST['fecha_inicio'];
-$fecha_fin = $_POST['fecha_fin'];
-$nombre_cliente = $_POST['nombre_cliente'];
-$sql = "SELECT * FROM evidencias WHERE fecha BETWEEN '$fecha_inicio' AND '$fecha_fin' AND id_cliente = '$nombre_cliente'";
-$result = mysqli_query($conexion, $sql);
-$total_residuos = 0;
-while ($row = mysqli_fetch_array($result)) {
-    $particion = explode(',', $row['arreglo']);
-    $total_residuos += $particion[1];
-}
-$precio_concepto = 30;
+include 'graficas.php';
+$fecha_inicio = "01-01-2023";
+$fecha_fin = "23-01-2023";
+$total_residuos = obtener_residuo_total('2023-01-01', '2023-01-31');
+$precio_concepto = 833.33;
 $precio = $total_residuos * $precio_concepto;
 $IVA = $precio * .16;
 $total = $precio + $IVA;
 echo '
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 
 <head>

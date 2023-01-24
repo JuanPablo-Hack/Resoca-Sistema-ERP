@@ -1,4 +1,4 @@
-/* Formating function for row details */
+  /* Formating function for row details */
 function fnFormatDetails(oTable, nTr) {
   var aData = oTable.fnGetData(nTr);
   var sOut =
@@ -65,8 +65,6 @@ $(document).ready(function () {
     }
   });
 });
-<<<<<<< HEAD
-=======
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("Form_Corte").addEventListener("submit", crearCorte);
@@ -94,4 +92,3 @@ async function crearCorte(e) {
       }
     });
 }
->>>>>>> 369e6abc980240ba11250c4c791ac018aff7a173

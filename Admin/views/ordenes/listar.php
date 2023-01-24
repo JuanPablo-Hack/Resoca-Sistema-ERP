@@ -24,6 +24,9 @@
                         <th class="hidden-phone">Fecha y Hora</th>
                         <th class="hidden-phone">Tipo Servicio</th>
                         <th class="hidden-phone">Estado</th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
+                        <th style="display: none;"></th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -43,7 +46,7 @@
                                                                                                                 }
                                                                                                                 echo $nombre;
                                                                                                                 ?></a></td>
-                            <td><?php echo $mostrar['fecha'] . ' ' . $mostrar['hora'] ?></td>
+                            <td><?php echo $mostrar['fecha']  ?></td>
                             <td><a href="./detalles_servicio.php?id_cliente=<?php echo $mostrar['servicio']  ?>"><?php
 
 
@@ -55,6 +58,9 @@
                                                                                                                     echo $nombre;
                                                                                                                     ?></td>
                             <td><?php echo $mostrar['estado'] ?></a></td>
+                            <td style="display: none;"><?php echo $mostrar['encargado'] ?></a></td>
+                            <td style="display: none;"><?php echo $mostrar['cargo'] ?></a></td>
+                            <td style="display: none;"><?php echo $mostrar['hora'] ?></a></td>
                             <td>
                                 <a onclick="crearPDF(<?php echo $mostrar['id'] ?>)" title="Más Info" class="btn btn-success btn-xs"><i class="fa fa-info-circle"></i></a>
                                 <button class="btn btn-primary btn-xs" title="Editar Orden" data-toggle="modal" data-target="#EditarOrdenes<?php echo $mostrar['id'] ?>"><i class="fa fa-pencil"></i></button>

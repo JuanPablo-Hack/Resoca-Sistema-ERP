@@ -9,10 +9,10 @@ class DB
 
     public function __construct()
     {
-        $this->host     = 'sql199.main-hosting.eu';
-        $this->db       = 'u298097659_resoca';
-        $this->user     = 'u298097659_resoca';
-        $this->password = '4so|8PVj>zR';
+        $this->host     = 'localhost';
+        $this->db       = 'resoca';
+        $this->user     = 'root';
+        $this->password = '';
         $this->charset  = 'utf8mb4';
     }
 

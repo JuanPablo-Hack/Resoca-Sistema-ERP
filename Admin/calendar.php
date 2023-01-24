@@ -135,18 +135,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-sm-12 form-group">
-                                                        <label>Cliente:</label>
-                                                        <input id="cliente_orden" type="text" class="form-control" disabled>
-                                                    </div>
-                                                    <div class="col-sm-12 form-group">
-                                                        <label>Servicio:</label>
-                                                        <input id="servicio_orden" type="text" class="form-control" disabled>
-                                                    </div>
-                                                    <div class="col-sm-12 form-group">
-                                                        <label>Estado:</label>
-                                                        <input id="estado_orden" type="text" class="form-control" disabled>
-                                                    </div>
+
                                                     <div class="col-sm-12 form-group">
                                                         <label>Cantidad de residuos (KG):</label>
                                                         <input id="cantidad_orden" type="text" class="form-control" disabled>

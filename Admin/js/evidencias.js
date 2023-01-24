@@ -4,14 +4,12 @@ function fnFormatDetails(oTable, nTr) {
   var sOut =
     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
   sOut +=
-    "<tr><td>Rendering engine:</td><td>" +
-    aData[1] +
-    " " +
-    aData[4] +
-    "</td></tr>";
-  sOut += "<tr><td>Link to source:</td><td>Could provide a link here</td></tr>";
+    "<tr><td>No. Conceptos recolectados:</td><td>" + aData[5] + "</td></tr>";
   sOut +=
-    "<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>";
+    "<tr><td>Concepto recolectado y cantidad:</td><td>" +
+    aData[6] +
+    "</td></tr>";
+  sOut += "<tr><td>Comentarios:</td><td>" + aData[7] + "</td></tr>";
   sOut += "</table>";
 
   return sOut;
@@ -45,7 +43,7 @@ $(document).ready(function () {
         aTargets: [0],
       },
     ],
-    aaSorting: [[4, "desc"]],
+    aaSorting: [[4, "asc"]],
   });
 
   /* Add event listener for opening and closing details
@@ -146,4 +144,33 @@ function geturl() {
     loc.href.length -
       ((loc.pathname + loc.search + loc.hash).length - pathname.length)
   );
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("EditarEvidencia")
+    .addEventListener("submit", EditarEvidencia);
+});
+async function EditarEvidencia(e) {
+  e.preventDefault();
+  var form = document.getElementById("EditarEvidencia");
+  let data = new FormData(form);
+  data.append("accion", "editar");
+  fetch("php/evidencias_controller.php", {
+    method: "POST",
+    body: data,
+  })
+    .then((result) => result.text())
+    .then((result) => {
+      if (result == 1) {
+        document.getElementById("success").style.display = "inherit";
+        document.getElementById("wrong").style.display = "none";
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+      } else {
+        document.getElementById("success").style.display = "none";
+        document.getElementById("wrong").style.display = "inherit";
+      }
+    });
 }

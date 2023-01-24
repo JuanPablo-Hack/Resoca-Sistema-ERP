@@ -1,28 +1,16 @@
 <?php
 switch ($_POST['accion']) {
     case 'editar':
-        editar_evidencia($_POST['identificador'], $_POST['folio'], $_POST['ticket'], $_POST['cantidad'],  $_FILES['image']['name'], $_POST['comentarios']);
+        editar_evidencia($_POST['id'], $_POST['folio'], $_POST['ticket'], $_POST['cantidad'], $_POST['comentarios'], $_POST['fecha']);
         break;
     case 'eliminar':
         eliminar_evidencia($_POST['id']);
         break;
 }
-function editar_evidencia($id, $folio, $ticket, $cantidad, $foto, $comentarios)
+function editar_evidencia($id, $folio, $ticket, $cantidad, $comentarios, $fecha)
 {
     include './conexion.php';
-    $ruta_manifiestos = '../../evidencias/';
-    $ruta_manifiestos_cliente = $ruta_manifiestos . $folio . "/";
-
-    if (!file_exists($ruta_manifiestos)) {
-        mkdir($ruta_manifiestos_cliente, 0777, true);
-    }
-    if (!file_exists($ruta_manifiestos_cliente)) {
-        mkdir($ruta_manifiestos_cliente, 0777, true);
-    }
-
-    move_uploaded_file($_FILES['image']['tmp_name'], $ruta_manifiestos_cliente . $_FILES['image']['name']);
-
-    $sql = "UPDATE evidencias SET folio = '$folio', ticket = '$ticket',cantidad = '$cantidad', foto = '$foto', comentarios = '$comentarios' WHERE id = $id ";
+    $sql = "UPDATE `evidencias` SET `folio` = '$folio', `ticket` = '$ticket', `arreglo` = '$cantidad', `comentarios` = '$comentarios', `creado` = '$fecha' WHERE `evidencias`.`id` = $id";
     $resultado = $conexion->query($sql);
     if ($resultado) {
         echo 1;

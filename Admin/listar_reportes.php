@@ -107,14 +107,8 @@ include 'php/conexion.php';
   <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
   <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
-<<<<<<< HEAD
-  <script src="../assets/lib/common-scripts.js"></script>
-  <script src="js/cortes.js"></script>
-
-=======
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="js/cortes.js"></script>
->>>>>>> 369e6abc980240ba11250c4c791ac018aff7a173
 
 </body>
 

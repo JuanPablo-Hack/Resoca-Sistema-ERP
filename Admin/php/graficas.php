@@ -16,6 +16,3 @@ function obtener_porcentaje_residuo($residuo_total_generado)
     $calculo_porcentaje = ($residuo_total_generado * 100) / 10000;
     return $calculo_porcentaje;
 }
-
-$datos = obtener_residuo_total('2023-01-01', '2023-01-31');
-echo obtener_porcentaje_residuo($datos);

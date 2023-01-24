@@ -100,8 +100,8 @@ include 'php/conexion.php';
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th>Registro</th>
-                    <th>Folio</th>
+                    <th>No. confirmación</th>
+                    <th>No. de Orden</th>
                     <th class="hidden-phone">Nombre de encargado</th>
                     <th class="hidden-phone">Cargo</th>
                     <th class="hidden-phone">Fecha y Hora</th>
