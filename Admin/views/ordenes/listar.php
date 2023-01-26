@@ -37,7 +37,7 @@
                     while ($mostrar = mysqli_fetch_array($resultado)) {
                     ?>
                         <tr>
-                            <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-23-' . $mostrar['id']; ?></a></td>
+                            <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-23--' . $mostrar['id']; ?></a></td>
                             <td><a href="./detalles_cliente.php?id_cliente=<?php echo $mostrar['cliente']  ?>"><?php
                                                                                                                 $sql1 = "SELECT * FROM clientes WHERE id='" . $mostrar['cliente'] . "'";
                                                                                                                 $result1 = mysqli_query($conexion, $sql1);

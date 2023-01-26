@@ -9,6 +9,8 @@ session_start();
   <?php include 'templates/head.php'; ?>
 </head>
 
+<!-- TODO: terminar der poner las listas de cortes generados en el apartado de admin -->
+
 <body>
   <section id="container">
     <?php include 'templates/nav.php'; ?>

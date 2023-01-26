@@ -27,7 +27,7 @@ $result = mysqli_query($conexion, $sql);
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">Indentificador</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="identificador" value="<?php echo "FOS-22" . $Row['id_orden']; ?>" readonly>
+                                        <input type="text" class="form-control" name="identificador" value="<?php echo "FSO-23-" . $Row['id_orden']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">

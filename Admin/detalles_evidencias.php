@@ -95,7 +95,7 @@ $Row = mysqli_fetch_array(get_evidencia($_GET['id_evidencia']));
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">Folio Relacionado</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="folio" value="<?php echo "FSO-22-" . $Row['folio']; ?>" readonly>
+                                        <input type="text" class="form-control" name="folio" value="<?php echo "FSO-23-" . $Row['folio']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">

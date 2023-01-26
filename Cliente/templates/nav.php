@@ -45,7 +45,7 @@
 
                 </ul>
             </li>
-            <li class="sub-menu">
+            <!-- <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-book"></i>
                     <span>Manifiestos</span>
@@ -54,8 +54,8 @@
                     <li><a href="listar_manifiesto.php">Mis manifiestos</a></li>
 
                 </ul>
-            </li>
-            <li class="sub-menu">
+            </li> -->
+            <!-- <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-book"></i>
                     <span>Acuses</span>
@@ -64,11 +64,11 @@
                     <li><a href="listar_acuses.php">Mis acuses</a></li>
 
                 </ul>
-            </li>
+            </li> -->
             <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-book"></i>
-                    <span>Reporte General</span>
+                    <span>Estadísticas</span>
                 </a>
             </li>
 

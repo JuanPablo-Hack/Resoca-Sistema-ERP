@@ -367,3 +367,5 @@ echo '
 
 </html>
 ';
+
+// TODO: Terminar el pdf que se vea en todas las instancias necesarias y los campos de confirmaciones que se visualicen
