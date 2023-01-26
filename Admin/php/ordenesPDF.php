@@ -1,8 +1,8 @@
 <?php
 include_once 'conexion.php';
-$id = $_POST['id'];
+$id = 1;
 
-$orden = $conexion->query("SELECT * FROM ordenes_2022 WHERE id = $id");
+$orden = $conexion->query("SELECT * FROM ordenes WHERE id = $id");
 $ordenf = $orden->fetch_assoc();
 
 $cliente = $conexion->query("SELECT * FROM clientes WHERE id = " . $ordenf['cliente']);
@@ -274,9 +274,9 @@ echo '
             <label for="" class="font-weight-bold">14-. Conformidad del Generador con el servicio: </label>
           </div>
           <div class="col-sm-12 mt-1">
-            <label for="" class="font-weight-bold">Nombre:  </label><br>
+            <label for="" class="font-weight-bold">Nombre: ' . $confirmacionf['nombre'] . '  </label><br>
             <label for="" class="font-weight-bold">Firma: </label><br>
-            <label for="" class="font-weight-bold">Puesto:  </label><br>
+            <label for="" class="font-weight-bold">Puesto: ' . $confirmacionf['cargo'] . ' </label><br>
           </div>
         </div>
       </div>
@@ -294,73 +294,7 @@ echo '
           </div>
         </div>
       </div>
-
-      <div class="col-sm-5 mx-auto my-2 bg-light border border-dark">
-        <div class="row">
-          <div class="col-sm-12 bg-light border-bottom border-dark text-center titulos">
-            <label for="" class="font-weight-bold">16-. Observaciones del Generador:</label>
-          </div>
-          <div class="col-sm-12">
-            <div class="row bg-light">
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-5 mx-auto my-2 bg-light border border-dark">
-        <div class="row">
-          <div class="col-sm-12 bg-light border-bottom border-dark text-center titulos">
-            <label for="" class="font-weight-bold">17-. Observaciones del transportista SOCA:</label>
-          </div>
-          <div class="col-sm-12">
-            <div class="row bg-light">
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-bottom border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-              <div class="col-sm-12 border-dark">
-                <label for="" class="font-weight-bold"></label>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </body>

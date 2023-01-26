@@ -1,5 +1,7 @@
 <?php
 include 'php/conexion.php';
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,12 +27,12 @@ include 'php/conexion.php';
                     <th class="hidden-phone">Nombre de encargado</th>
                     <th class="hidden-phone">Cargo</th>
                     <th class="hidden-phone">Fecha y Hora</th>
-                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $sql = "SELECT * FROM confimarcion";
+                  $id = $_SESSION['usuario'];
+                  $sql = "SELECT * FROM confimarcion WHERE id_cliente = $id";
                   $resultado = $conexion->query($sql);
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
@@ -40,15 +42,7 @@ include 'php/conexion.php';
                       <td><?php echo $mostrar['nombre'] ?></td>
                       <td><?php echo $mostrar['cargo'] ?></td>
                       <td><?php echo $mostrar['creado'] ?></a></td>
-                      <td>
 
-
-                        <a href='./editar_confirmacion.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-primary btn-xs" title="Editar Orden"><i class="fa fa-pencil"></i></a>
-                        <a onclick="eliminarConfirmacion(<?php echo $mostrar['id'] ?>)" class="btn btn-danger btn-xs" title="Eliminar Orden"> <i class="fa fa-trash-o "></i></a>
-
-
-
-                      </td>
                     </tr>
                   <?php
                   }
@@ -66,7 +60,7 @@ include 'php/conexion.php';
     <!-- /MAIN CONTENT -->
     <!--main content end-->
     <!--footer start-->
-    <?php include 'templates/footer.php'; ?>../assets/
+    <?php include 'templates/footer.php'; ?>
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
@@ -82,48 +76,7 @@ include 'php/conexion.php';
   <script src="../assets/lib/common-scripts.js"></script>
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="js/controller.js"></script>
-  <!--script for this page-->
-  <!-- PDF -->
 
-  <script>
-    function addScript(url) {
-      var script = document.createElement('script');
-      script.type = 'application/javascript';
-      script.src = url;
-      document.head.appendChild(script);
-    }
-    addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
-
-    function crearPDF(id) {
-      var opt = {
-        margin: 1,
-        filename: 'Orden.pdf',
-        image: {
-          type: 'jpeg',
-          quality: 0.98
-        },
-        html2canvas: {
-          scale: 3
-        },
-        jsPDF: {
-          unit: 'in',
-          format: 'a3',
-          orientation: 'portrait'
-        }
-      };
-
-      $.ajax({
-        type: 'POST',
-        data: "id=" + id,
-        url: 'php/ordenesPDF.php',
-        success: function(r) {
-          // console.log(r);
-          var worker = html2pdf().set(opt).from(r).toPdf().save();
-
-        }
-      });
-    }
-  </script>
   <script type="text/javascript">
     $(document).ready(function() {
       /*
@@ -135,7 +88,7 @@ include 'php/conexion.php';
           "aTargets": [0]
         }],
         "aaSorting": [
-          [0, 'asc']
+          [4, 'asc']
         ]
       });
     });
