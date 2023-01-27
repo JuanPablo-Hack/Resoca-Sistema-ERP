@@ -1,4 +1,4 @@
-  /* Formating function for row details */
+/* Formating function for row details */
 function fnFormatDetails(oTable, nTr) {
   var aData = oTable.fnGetData(nTr);
   var sOut =
@@ -91,4 +91,53 @@ async function crearCorte(e) {
         document.getElementById("wrong").style.display = "inherit";
       }
     });
+}
+
+function FormaDeCobrar() {
+  FormatoDeCobroSeleccionado = document.getElementById("forma_cobrar").value;
+  if (FormatoDeCobroSeleccionado == 1) {
+    document.getElementById("rango_fechas").style.display = "inherit";
+    document.getElementById("dias_cobrados").style.display = "none";
+  } else {
+    document.getElementById("rango_fechas").style.display = "none";
+    document.getElementById("dias_cobrados").style.display = "inherit";
+  }
+}
+
+function addScript(url) {
+  var script = document.createElement("script");
+  script.type = "application/javascript";
+  script.src = url;
+  document.head.appendChild(script);
+}
+addScript(
+  "https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"
+);
+
+function crearPDF(id) {
+  var opt = {
+    margin: 1,
+    filename: "Corte.pdf",
+    image: {
+      type: "jpeg",
+      quality: 0.98,
+    },
+    html2canvas: {
+      scale: 3,
+    },
+    jsPDF: {
+      unit: "in",
+      format: "a3",
+      orientation: "portrait",
+    },
+  };
+
+  $.ajax({
+    type: "POST",
+    data: "id=" + id,
+    url: "php/cortesPDF.php",
+    success: function (r) {
+      var worker = html2pdf().set(opt).from(r).toPdf().save();
+    },
+  });
 }

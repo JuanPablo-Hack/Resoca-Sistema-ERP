@@ -9,8 +9,6 @@ session_start();
   <?php include 'templates/head.php'; ?>
 </head>
 
-<!-- TODO: terminar der poner las listas de cortes generados en el apartado de admin -->
-
 <body>
   <section id="container">
     <?php include 'templates/nav.php'; ?>
@@ -18,44 +16,51 @@ session_start();
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Programación de Cortes</h3>
         <div class="row mb">
-          <!-- page start-->
           <div class="content-panel">
             <div class="adv-table">
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th>No. de Folio</th>
-                    <th>No. de ticket</th>
-                    <th class="hidden-phone">Cantidad total</th>
-                    <th class="hidden-phone">Unidad</th>
-                    <th class="hidden-phone">Fecha</th>
+                    <th>No. de Folio de Corte</th>
+                    <th>Cliente</th>
+                    <th class="hidden-phone">Concepto Cobrado</th>
+                    <th class="hidden-phone">Rango de Fechas</th>
+                    <th class="hidden-phone">Días cobrados</th>
                     <th class="hidden-phone">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  if (isset($_SESSION['user'])) {
-                    $id = $_SESSION['user'];
-                    $sql = "SELECT * FROM cortes";
-                    $resultado = $conexion->query($sql);
-                    while ($mostrar = mysqli_fetch_array($resultado)) {
+                  $id = $_SESSION['usuario'];
+                  $sql = "SELECT * FROM cortes where id_cliente =$id";
+                  $resultado = $conexion->query($sql);
+                  while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
-                      <tr>
-                        <td><?php echo $mostrar['folio'] ?></td>
-                        <td><?php echo $mostrar['ticket'] ?></td>
-                        <td><?php echo $mostrar['cantidad'] ?></td>
-                        <td><?php echo $mostrar['unidad'] ?></td>
-                        <td><?php echo $mostrar['creado'] ?></td>
-                        <td>
-
-                          <a href='./corte.php?id=<?php echo $mostrar['id']  ?>' class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
-
-
-
-                        </td>
-                      </tr>
+                    <tr>
+                      <td><?php echo 'F-CS-' . date('Y') . '-' . $mostrar['id'] ?></td>
+                      <td><?php
+                          $sql1 = "SELECT * FROM clientes WHERE id='" . $mostrar['id_cliente'] . "'";
+                          $result1 = mysqli_query($conexion, $sql1);
+                          if ($Row = mysqli_fetch_array($result1)) {
+                            $nombre = $Row['nombre'];
+                          }
+                          echo $nombre;
+                          ?></td>
+                      <td><?php
+                          $sql1 = "SELECT * FROM conceptos_cobros WHERE id='" . $mostrar['id_conceptos_cobros'] . "'";
+                          $result1 = mysqli_query($conexion, $sql1);
+                          if ($Row = mysqli_fetch_array($result1)) {
+                            $nombre = $Row['nombre'];
+                          }
+                          echo $nombre;
+                          ?></td>
+                      <td><?php echo $mostrar['rango_fechas'] ?></td>
+                      <td><?php echo $mostrar['dias_cobrados'] ?></td>
+                      <td>
+                        <a onclick="crearPDF(<?php echo $mostrar['id'] ?>)" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
+                      </td>
+                    </tr>
                   <?php
-                    }
                   }
                   ?>
                 </tbody>
@@ -66,23 +71,132 @@ session_start();
         </div>
         <!-- /row -->
       </section>
-      <!-- /wrapper -->
     </section>
     <?php include 'templates/footer.php'; ?>
   </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="lib/advanced-datatable/js/DT_bootstrap.js"></script>
-  <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
-  <!--script for this page-->
+  <script src="../assets/lib/jquery/jquery.min.js"></script>
+  <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/lib/jquery.scrollTo.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+  <script src="../assets/lib/common-scripts.js"></script>
+  <script src="../assets/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.js"></script>
+  <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="../assets/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="../assets/lib/jquery.scrollTo.min.js"></script>
+  <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script type="text/javascript" language="javascript" src="../assets/lib/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+  <script>
+    /* Formating function for row details */
+    function fnFormatDetails(oTable, nTr) {
+      var aData = oTable.fnGetData(nTr);
+      var sOut =
+        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+      sOut +=
+        "<tr><td>Rendering engine:</td><td>" +
+        aData[1] +
+        " " +
+        aData[4] +
+        "</td></tr>";
+      sOut += "<tr><td>Link to source:</td><td>Could provide a link here</td></tr>";
+      sOut +=
+        "<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>";
+      sOut += "</table>";
 
+      return sOut;
+    }
+
+    $(document).ready(function() {
+      /*
+       * Insert a 'details' column to the table
+       */
+      var nCloneTh = document.createElement("th");
+      var nCloneTd = document.createElement("td");
+      nCloneTd.innerHTML =
+        '<img src="../assets/lib/advanced-datatable/images/details_open.png">';
+      nCloneTd.className = "center";
+
+      $("#hidden-table-info thead tr").each(function() {
+        this.insertBefore(nCloneTh, this.childNodes[0]);
+      });
+
+      $("#hidden-table-info tbody tr").each(function() {
+        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
+      });
+
+      /*
+       * Initialse DataTables, with no sorting on the 'details' column
+       */
+      var oTable = $("#hidden-table-info").dataTable({
+        aoColumnDefs: [{
+          bSortable: false,
+          aTargets: [0],
+        }, ],
+        aaSorting: [
+          [1, "asc"]
+        ],
+      });
+
+      /* Add event listener for opening and closing details
+       * Note that the indicator for showing which row is open is not controlled by DataTables,
+       * rather it is done here
+       */
+      $("#hidden-table-info tbody td img").live("click", function() {
+        var nTr = $(this).parents("tr")[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          this.src = "../assets/lib/advanced-datatable/images/details_open.png";
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          this.src = "../assets/lib/advanced-datatable/images/details_close.png";
+          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), "details");
+        }
+      });
+    });
+  </script>
+  <script>
+    function addScript(url) {
+      var script = document.createElement("script");
+      script.type = "application/javascript";
+      script.src = url;
+      document.head.appendChild(script);
+    }
+    addScript(
+      "https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"
+    );
+
+    function crearPDF(id) {
+      var opt = {
+        margin: 1,
+        filename: "Corte.pdf",
+        image: {
+          type: "jpeg",
+          quality: 0.98,
+        },
+        html2canvas: {
+          scale: 3,
+        },
+        jsPDF: {
+          unit: "in",
+          format: "a3",
+          orientation: "portrait",
+        },
+      };
+
+      $.ajax({
+        type: "POST",
+        data: "id=" + id,
+        url: "php/cortesPDF.php",
+        success: function(r) {
+          var worker = html2pdf().set(opt).from(r).toPdf().save();
+        },
+      });
+    }
+  </script>
 </body>
 
 </html>
