@@ -68,7 +68,7 @@
             <li class="sub-menu">
                 <a href="imades.php">
                     <i class="fa fa-bar-chart-o"></i>
-                    <span>Reporte Imades</span>
+                    <span>Estadísticas</span>
                 </a>
             </li>
 
