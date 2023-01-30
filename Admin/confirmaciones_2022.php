@@ -115,8 +115,8 @@ include 'php/conexion.php';
                                     while ($mostrar = mysqli_fetch_array($resultado)) {
                                     ?>
                                         <tr>
-                                            <td><a href="./detalles_confirmacion.php?id_confirmacion=<?php echo $mostrar['id']  ?>"><?php echo 'CONF-22-' . $mostrar['id'] ?></a></td>
-                                            <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id_orden']  ?>"><?php echo 'FSO-22-' . $mostrar['id_orden'] ?></a></td>
+                                            <td><a href="./detalles_confirmacion2022.php?id_confirmacion=<?php echo $mostrar['id']  ?>"><?php echo 'CONF-22-' . $mostrar['id'] ?></a></td>
+                                            <td><a href="./detalles_orden2022.php?id_orden=<?php echo $mostrar['id_orden']  ?>"><?php echo 'FSO-22-' . $mostrar['id_orden'] ?></a></td>
                                             <td><?php echo $mostrar['nombre'] ?></td>
                                             <td><?php echo $mostrar['cargo'] ?></td>
                                             <td><?php echo $mostrar['creado'] ?></a></td>

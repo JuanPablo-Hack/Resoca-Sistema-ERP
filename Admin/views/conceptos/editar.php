@@ -3,27 +3,28 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Crear concepto</h4>
+                <h4 class="modal-title" id="myModalLabel">Editar concepto</h4>
             </div>
             <div class="modal-body">
-                <div class="alert alert-success" style="display: none;" id="success"><b>Felicidades!</b> Has agregado con éxito el concepto.</div>
-                <div class="alert alert-danger" style="display: none;" id="wrong"><b>Oh no!</b> Cambie algunas cosas e intente enviar de nuevo.</div>
-                <form class="form-horizontal style-form" id="FormCatalogo">
+                <form class="form-horizontal style-form" action="php/catalogo_controller.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $mostrar['id'] ?>">
+                    <input type="hidden" name="accion" value="editar">
                     <div class="form-group">
                         <label for="firstname" class="control-label col-lg-2">Nombre del Concepto</label>
                         <div class="col-sm-4">
-                            <input class=" form-control" id="firstname" name="nombre" type="text" />
+                            <input class=" form-control" id="firstname" name="nombre" type="text" value="<?php echo $mostrar['nombre'] ?>" />
                         </div>
                         <label for="lastname" class="control-label col-lg-2">Clave</label>
                         <div class="col-sm-4">
-                            <input class=" form-control" id="lastname" name="clave" type="text" />
+                            <input class=" form-control" id="lastname" name="clave" type="text" value="<?php echo $mostrar['clave'] ?>" />
                         </div>
                     </div>
+                    <br><br> <br>
 
                     <div class="form-group">
                         <label for="username" class="control-label col-lg-2">Precio</label>
                         <div class="col-sm-4">
-                            <input class="form-control " id="username" name="precio" type="text" />
+                            <input class="form-control " id="username" name="precio" type="text" value="<?php echo $mostrar['precio'] ?>" />
                         </div>
                     </div>
             </div>

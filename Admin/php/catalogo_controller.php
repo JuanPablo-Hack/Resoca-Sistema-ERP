@@ -28,9 +28,9 @@ function editar_catalogo($id, $nombre, $clave, $precio)
     $sql = "UPDATE catalogo SET nombre='$nombre',clave='$clave',precio='$precio' WHERE id='$id'";
     $resultado = $conexion->query($sql);
     if ($resultado) {
-        echo 1;
+        header("Location: ../listar_catalogo.php");
     } else {
-        echo 0;
+        header("Location: ../listar_catalogo.php");
     }
 }
 function eliminar_catalogo($id)

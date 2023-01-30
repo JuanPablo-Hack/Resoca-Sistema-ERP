@@ -27,10 +27,24 @@ function get_evidencia($id)
     $result = mysqli_query($conexion, $sql);
     return $result;
 }
+function get_evidencia_2022($id)
+{
+    include 'conexion.php';
+    $sql = "SELECT * FROM evidencias_2022 WHERE id='" . $id . "'";
+    $result = mysqli_query($conexion, $sql);
+    return $result;
+}
 function get_confirmacion($id)
 {
     include 'conexion.php';
     $sql = "SELECT * FROM confimarcion WHERE id='" . $id . "'";
+    $result = mysqli_query($conexion, $sql);
+    return $result;
+}
+function get_confirmacion_2022($id)
+{
+    include 'conexion.php';
+    $sql = "SELECT * FROM confimarcion_2022 WHERE id='" . $id . "'";
     $result = mysqli_query($conexion, $sql);
     return $result;
 }
