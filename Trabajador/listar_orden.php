@@ -151,7 +151,7 @@ include 'php/conexion.php';
           "aTargets": [0]
         }],
         "aaSorting": [
-          [0, 'asc']
+          [2, 'asc']
         ]
       });
     });
