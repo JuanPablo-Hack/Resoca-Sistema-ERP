@@ -119,7 +119,7 @@ $Row = mysqli_fetch_array(get_evidencia($_GET['id_evidencia']));
                                     <div class="col-md-9">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
                                             <div class="fileupload-new thumbnail">
-                                                <img src="../evidencias/<?php echo $Row['id'] . "/" . $Row['foto'] ?>" />
+                                                <img src="../evidencias/<?php echo $Row['folio'] . "/" . $Row['foto'] ?>" />
                                             </div>
                                             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 
