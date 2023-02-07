@@ -7,7 +7,9 @@
 
 <body>
   <section id="container">
-    <?php include 'templates/nav.php'; ?>
+    <?php
+    include 'templates/nav.php';
+    ?>
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <ul class="sidebar-menu" id="nav-accordion">
@@ -77,7 +79,9 @@
         </ul>
       </div>
     </aside>
-    <?php include 'php/graficas.php'; ?>
+    <?php include 'php/graficas.php';
+    $calculo_enero = obtener_residuo_total('2023-01-01', '2023-01-31');
+    $calculo_febrero = obtener_residuo_total('2023-02-01', '2023-02-31'); ?>
     <section id="main-content">
       <section class="wrapper site-min-height">
         <h3><i class="fa fa-angle-right"></i> Reporte Imades</h3>
@@ -99,11 +103,11 @@
             </ul>
             <div class="bar">
               <div class="title">ENE</div>
-              <div class="value tooltips" data-original-title="<?php echo $datos = obtener_residuo_total('2023-01-01', '2023-01-31'); ?>" data-toggle="tooltip" data-placement="top"><?php echo obtener_porcentaje_residuo($datos); ?>%</div>
+              <div class="value tooltips" data-original-title="<?php echo $calculo_enero ?>" data-toggle="tooltip" data-placement="top"><?php echo obtener_porcentaje_residuo(10000, $calculo_enero); ?>%</div>
             </div>
             <div class="bar ">
               <div class="title">FEB</div>
-              <div class="value tooltips" data-original-title="0" data-toggle="tooltip" data-placement="top">0%</div>
+              <div class="value tooltips" data-original-title="<?php echo $calculo_febrero ?>" data-toggle="tooltip" data-placement="top"><?php echo obtener_porcentaje_residuo(10000, $calculo_febrero); ?>%</div>
             </div>
             <div class="bar ">
               <div class="title">MAR</div>
@@ -136,11 +140,13 @@
                 <canvas id="serverstatus01" height="120" width="120"></canvas>
                 <script>
                   var doughnutData = [{
-                    value: <?php echo obtener_porcentaje_residuo($datos); ?>,
-                    color: "#FF6B6B"
+                    value: <?php echo obtener_porcentaje_residuo($calculo_enero + $calculo_febrero, $calculo_enero); ?>,
+                    color: "#FF6B6B",
+                    tooltip: "Enero"
                   }, {
-                    value: <?php echo 100 - obtener_porcentaje_residuo($datos); ?>,
-                    color: "#fdfdfd"
+                    value: <?php echo obtener_porcentaje_residuo($calculo_enero + $calculo_febrero, $calculo_febrero); ?>,
+                    color: "#FF5733",
+                    tooltip: "Febrero",
                   }];
                   var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
                 </script>
@@ -149,7 +155,7 @@
                     <p>Total<br />de Residuos:</p>
                   </div>
                   <div class="col-sm-6 col-xs-6">
-                    <h2><?php echo obtener_porcentaje_residuo($datos); ?>%</h2>
+                    <h2><?php echo $calculo_enero + $calculo_febrero; ?></h2>
                   </div>
                 </div>
               </div>
