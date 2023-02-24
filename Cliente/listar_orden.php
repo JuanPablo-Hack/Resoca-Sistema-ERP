@@ -17,6 +17,16 @@ session_start();
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Bitacora de Ordenes</h3>
         <div class="row mb">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <select class="form-control" onchange="Mostrar_Tabla_Año()" id="filtro_ano">
+                <option value="0">-Seleccione un opción-</option>
+                <option value="2022">Historico 2022</option>
+                <option value="2023">Historico 2023</option>
+              </select>
+            </div>
+          </div>
+          <br>
           <div class="content-panel">
             <div class="adv-table">
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
@@ -38,8 +48,9 @@ session_start();
                   ?>
                     <tr>
 
-                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-22-' . $mostrar['id'] ?></a></td>
+
                       <td><?php echo $mostrar['fecha'] ?></td>
+                      <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-23-' . $mostrar['id'] ?></a></td>
                       <td><?php
 
 
@@ -86,61 +97,7 @@ session_start();
   <script type="text/javascript" src="../assets/lib/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
   <script src="../assets/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <!-- PDF -->
-
-  <script>
-    function addScript(url) {
-      var script = document.createElement('script');
-      script.type = 'application/javascript';
-      script.src = url;
-      document.head.appendChild(script);
-    }
-    addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
-
-    function crearPDF(id) {
-      var opt = {
-        margin: 1,
-        filename: 'Orden.pdf',
-        image: {
-          type: 'jpeg',
-          quality: 0.98
-        },
-        html2canvas: {
-          scale: 3
-        },
-        jsPDF: {
-          unit: 'in',
-          format: 'a3',
-          orientation: 'portrait'
-        }
-      };
-
-      $.ajax({
-        type: 'POST',
-        data: "id=" + id,
-        url: 'php/ordenesPDF.php',
-        success: function(r) {
-          // console.log(r);
-          var worker = html2pdf().set(opt).from(r).toPdf().save();
-
-        }
-      });
-    }
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var oTable = $("#hidden-table-info").dataTable({
-        aoColumnDefs: [{
-          bSortable: false,
-          aTargets: [0],
-        }, ],
-        aaSorting: [
-          [1, "asc"]
-        ],
-      });
-    });
-  </script>
+  <script src="js/ordenes.js"></script>
 
 </body>
 

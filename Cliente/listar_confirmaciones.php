@@ -17,6 +17,16 @@ session_start();
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Bitacora Confirmaciones</h3>
         <div class="row mb">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <select class="form-control" onchange="Mostrar_Tabla_Año()" id="filtro_ano">
+                <option value="0">-Seleccione un opción-</option>
+                <option value="2022">Historico 2022</option>
+                <option value="2023">Historico 2023</option>
+              </select>
+            </div>
+          </div>
+          <br>
           <div class="content-panel">
             <div class="adv-table">
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
@@ -37,7 +47,7 @@ session_start();
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
                     <tr>
-                      <td><a href="./detalles_confirmacion.php?id_confirmacion=<?php echo $mostrar['id']  ?>"><?php echo 'CONF-22-' . $mostrar['id'] ?></a></td>
+                      <td><a href="./detalles_confirmacion.php?id_confirmacion=<?php echo $mostrar['id']  ?>"><?php echo 'CONF-23-' . $mostrar['id'] ?></a></td>
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id_orden']  ?>"><?php echo 'FSO-22-' . $mostrar['id_orden'] ?></a></td>
                       <td><?php echo $mostrar['nombre'] ?></td>
                       <td><?php echo $mostrar['cargo'] ?></td>
@@ -77,22 +87,7 @@ session_start();
   <script src="../assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="js/controller.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      /*
-       * Initialse DataTables, with no sorting on the 'details' column
-       */
-      var oTable = $('#hidden-table-info').dataTable({
-        "aoColumnDefs": [{
-          "bSortable": true,
-          "aTargets": [0]
-        }],
-        "aaSorting": [
-          [4, 'asc']
-        ]
-      });
-    });
-  </script>
+  <script src="js/confirmaciones.js"></script>
 </body>
 
 </html>
