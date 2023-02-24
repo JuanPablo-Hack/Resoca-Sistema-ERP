@@ -49,7 +49,7 @@ session_start();
                                     ?>
                                         <tr>
                                             <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
-                                            <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-23-' . $mostrar['id'] ?></a></td>
+                                            <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                                             <td><?php echo $mostrar['ticket'] ?></td>
                                             <td><?php echo $mostrar['creado'] ?></td>
                                             <td style="display: none;"><?php echo $mostrar['num_conceptos'] ?></td>

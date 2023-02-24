@@ -42,7 +42,7 @@ session_start();
                                 <tbody>
                                     <?php
                                     $id = $_SESSION['usuario'];
-                                    $sql = "SELECT * FROM confimarcion WHERE id_cliente = $id";
+                                    $sql = "SELECT * FROM confimarcion_2022";
                                     $resultado = $conexion->query($sql);
                                     while ($mostrar = mysqli_fetch_array($resultado)) {
                                     ?>
