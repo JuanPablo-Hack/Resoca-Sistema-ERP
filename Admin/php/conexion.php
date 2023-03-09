@@ -1,7 +1,7 @@
 <?php
-$nombreServidor = "sql199.main-hosting.eu";
+$nombreServidor = "sql940.main-hosting.eu";
 $nombreUsuario = "u298097659_resoca";
-$passwordBaseDeDatos = "4so|8PVj>zR";
+$passwordBaseDeDatos = "o!G7:Xd>CmeI";
 $nombreBaseDeDatos = "u298097659_resoca";
 
 
