@@ -1,7 +1,7 @@
 {
   "name": "Sistema ERP de Resoca del Pácifico",
   "short_name": "Resoca ERP",
-  "start_url": "index.php",
+  "start_url": "login.html",
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
