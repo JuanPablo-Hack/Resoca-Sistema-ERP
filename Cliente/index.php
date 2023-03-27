@@ -11,11 +11,50 @@ session_start();
 <body>
   <section id="container">
     <?php include 'templates/nav.php'; ?>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered"><a href="profile.html"><img src="../assets/img/banner.png" class="img-circle" width="80"></a></p>
+          <h5 class="centered">Cliente</h5>
+          <li class="mt">
+            <a class="active" href="index.php">
+              <i class="fa fa-dashboard"></i>
+              <span>Panel de Control</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-calendar"></i>
+              <span>Ordenes de Servicios</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_orden.php">Bitacora</a></li>
+              <li><a href="listar_evidencias.php">Mis Evidencias</a></li>
+              <li><a href="listar_confirmaciones.php">Mis Confirmaciones</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Cortes</span>
+            </a>
+            <ul class="sub">
+              <li><a href="listar_reportes.php">Mis cortes</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="imades.php">
+              <i class="fa fa-bar-chart-o"></i>
+              <span>Estadísticas</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-9 main-chart">
-            <!--CUSTOM CHART START -->
             <div class="border-head">
               <h3>Servicios Realizados</h3>
             </div>
