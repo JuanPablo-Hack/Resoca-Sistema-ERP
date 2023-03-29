@@ -43,7 +43,7 @@ $(document).ready(function () {
         aTargets: [0],
       },
     ],
-    aaSorting: [[4, "asc"]],
+    aaSorting: [[5, "asc"]],
   });
   $("#hidden-table-info tbody td img").live("click", function () {
     var nTr = $(this).parents("tr")[0];

@@ -78,12 +78,13 @@ session_start();
                                         <th style="display:none;"></th>
                                         <th style="display:none;"></th>
                                         <th style="display:none;"></th>
+                                        <th style="display:none;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $id = $_SESSION['usuario'];
-                                    $sql = "SELECT * FROM evidencias_2022 WHERE id_cliente=$id";
+                                    $sql = "SELECT * FROM evidencias_2022";
                                     $resultado = $conexion->query($sql);
                                     while ($mostrar = mysqli_fetch_array($resultado)) {
                                     ?>
@@ -91,7 +92,8 @@ session_start();
                                             <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-22-' . $mostrar['folio'] ?></a></td>
                                             <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-22-' . $mostrar['id'] ?></a></td>
                                             <td><?php echo $mostrar['ticket'] ?></td>
-                                            <td><?php echo $mostrar['creado'] ?></td>
+                                            <td><?php echo $mostrar['fecha'] ?></td>
+                                            <td style="display: none;"><?php echo $mostrar['creado'] ?></td>
                                             <td style="display: none;"><?php echo $mostrar['num_conceptos'] ?></td>
                                             <td style="display: none;"><?php echo $mostrar['arreglo'] ?></td>
                                             <td style="display: none;"><?php echo $mostrar['comentarios'] ?></td>

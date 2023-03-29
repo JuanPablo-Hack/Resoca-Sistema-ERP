@@ -72,8 +72,9 @@ session_start();
                             <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                                 <thead>
                                     <tr>
-                                        <th class="hidden-phone">Fecha</th>
                                         <th>Folio</th>
+                                        <th class="hidden-phone">Fecha</th>
+                                        <th style="display: none;">Creado</th>
                                         <th class="hidden-phone">Tipo Servicio</th>
                                         <th class="hidden-phone">Encargado</th>
                                         <th>Acciones</th>
@@ -89,8 +90,10 @@ session_start();
                                         <tr>
 
 
-                                            <td><?php echo $mostrar['fecha'] ?></td>
+
                                             <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id']  ?>"><?php echo 'FSO-22-' . $mostrar['id'] ?></a></td>
+                                            <th style="display: none;"><?php echo $mostrar['creado'] ?></th>
+                                            <td><?php echo $mostrar['fecha'] ?></td>
                                             <td><?php
 
 
