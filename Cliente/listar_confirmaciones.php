@@ -82,7 +82,7 @@ session_start();
                 <tbody>
                   <?php
                   $id = $_SESSION['usuario'];
-                  $sql = "SELECT * FROM confimarcion WHERE id_cliente = $id";
+                  $sql = "SELECT * FROM confimarcion";
                   $resultado = $conexion->query($sql);
                   while ($mostrar = mysqli_fetch_array($resultado)) {
                   ?>
@@ -91,7 +91,14 @@ session_start();
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['id_orden']  ?>"><?php echo 'FSO-23-' . $mostrar['id_orden'] ?></a></td>
                       <td><?php echo $mostrar['nombre'] ?></td>
                       <td><?php echo $mostrar['cargo'] ?></td>
-                      <td><?php echo $mostrar['creado'] ?></a></td>
+                      <td><?php
+                          $sql1 = "SELECT * FROM ordenes WHERE id='" . $mostrar['id_orden'] . "'";
+                          $result1 = mysqli_query($conexion, $sql1);
+                          if ($Row = mysqli_fetch_array($result1)) {
+                            $fecha = $Row['fecha'];
+                          }
+                          echo $fecha;
+                          ?></a></td>
 
                     </tr>
                   <?php

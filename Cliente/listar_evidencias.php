@@ -91,7 +91,14 @@ session_start();
                       <td><a href="./detalles_orden.php?id_orden=<?php echo $mostrar['folio']  ?>"><?php echo 'FSO-23-' . $mostrar['folio'] ?></a></td>
                       <td><a href="./detalles_evidencias.php?id_evidencia=<?php echo $mostrar['id']  ?>"><?php echo 'EVE-23-' . $mostrar['id'] ?></a></td>
                       <td><?php echo $mostrar['ticket'] ?></td>
-                      <td><?php echo $mostrar['creado'] ?></td>
+                      <td><?php
+                          $sql1 = "SELECT * FROM ordenes WHERE id='" . $mostrar['folio'] . "'";
+                          $result1 = mysqli_query($conexion, $sql1);
+                          if ($Row = mysqli_fetch_array($result1)) {
+                            $fecha = $Row['fecha'];
+                          }
+                          echo $fecha;
+                          ?></td>
                       <td style="display: none;"><?php echo $mostrar['num_conceptos'] ?></td>
                       <td style="display: none;"><?php echo $mostrar['arreglo'] ?></td>
                       <td style="display: none;"><?php echo $mostrar['comentarios'] ?></td>
