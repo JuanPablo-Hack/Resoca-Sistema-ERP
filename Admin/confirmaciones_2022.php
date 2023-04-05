@@ -31,7 +31,7 @@ include 'php/conexion.php';
                         </a>
                         <ul class="sub">
                             <li><a href="listar_orden.php">Bitacora</a></li>
-                            <li><a href="calendar.php">Calendario</a></li>
+                           
                             <li><a href="listar_servicios.php">Lista de Servicios</a></li>
                             <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
                             <li class="active"><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>

@@ -31,7 +31,7 @@ include 'php/conexion.php';
             </a>
             <ul class="sub">
               <li class="active"><a href="listar_orden.php">Bitacora</a></li>
-              <li><a href="calendar.php">Calendario</a></li>
+             
               <li><a href="listar_servicios.php">Lista de Servicios</a></li>
               <li><a href="listar_evidencias.php">Lista de Evidencias</a></li>
               <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
@@ -81,13 +81,10 @@ include 'php/conexion.php';
     </aside>
     <section id="main-content">
       <section class="wrapper">
-
         <div class="row mb">
-          <!-- page start-->
           <div class="content-panel">
             <?php include 'views/ordenes/listar.php'; ?>
           </div>
-          <!-- page end-->
         </div>
       </section>
     </section>

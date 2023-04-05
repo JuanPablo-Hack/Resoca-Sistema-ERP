@@ -6,7 +6,7 @@
         <div class="credits">
             Creado y Diseñado por Jupiter.org
         </div>
-        <a href="index.html#" class="go-top">
+        <a href="index.php#" class="go-top">
             <i class="fa fa-angle-up"></i>
         </a>
     </div>
