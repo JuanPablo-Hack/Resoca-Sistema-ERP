@@ -57,8 +57,8 @@
 
 
                                         <a onclick="crearPDF(<?php echo $mostrar['id']; ?>)" title="Más Información" class="btn btn-primary btn-xs"><i class="fa fa-info-circle"></i></a>
-                                        <a href="./confirmacion.php?id=<?php echo $mostrar['id']  ?>" title="Confirmar Orden" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                                        <a href="./registro_evidencias.php?id=<?php echo $mostrar['id']  ?>" title="Subir Evidencias" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
+                                        <a href="./confirmacion_2022.php?id=<?php echo $mostrar['id']  ?>" title="Confirmar Orden" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
+                                        <a href="./registro_evidencia_2022.php?id=<?php echo $mostrar['id']  ?>" title="Subir Evidencias" class="btn btn-success btn-xs"><i class="fa fa-plus-circle"></i></a>
                                     </td>
                                 </tr>
                             <?php

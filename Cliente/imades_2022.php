@@ -9,11 +9,11 @@
     <section id="container">
         <?php include 'templates/nav.php'; ?>
         <?php include 'views/imades/menu.php'; ?>
-        <?php include 'php/graficas.php';
-        $calculo_enero = obtener_residuo_total('2023-01-01', '2023-01-31');
-        $calculo_febrero = obtener_residuo_total('2023-02-01', '2023-02-31'); ?>
+        <?php include 'php/graficas_2022.php';
+        $calculo_enero = obtener_residuo_total('2022-01-01', '2022-01-31');
+        $calculo_febrero = obtener_residuo_total('2022-02-01', '2022-02-31'); ?>
         <section id="main-content">
-            <?php include 'views/imades/graficas_2023.php'; ?>
+            <?php include 'views/imades/graficas_2022.php'; ?>
         </section>
         <?php include 'templates/footer.php'; ?>
     </section>

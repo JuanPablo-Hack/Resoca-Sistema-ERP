@@ -20,14 +20,11 @@ $Row = mysqli_fetch_array($result);
             <section class="wrapper">
                 <h3><i class="fa fa-angle-right"></i> Detalles de la orden</h3>
                 <div class="row mt">
-                    <!--  DATE PICKERS -->
                     <div class="col-lg-12">
                         <div class="form-panel">
                             <form action="php/crear_orden.php" class="form-horizontal style-form" method='POST'>
                                 <h3>Datos del Servicio</h3>
                                 <hr>
-
-
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">Encargado</label>
                                     <div class="col-sm-4">
@@ -40,9 +37,6 @@ $Row = mysqli_fetch_array($result);
                                         <input type="text" name='cargo' class="form-control" value="<?php echo $Row['cargo'] ?>" readonly />
                                     </div>
                                 </div>
-
-
-
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Fecha de programación</label>
                                     <div class="col-md-3 col-xs-11">

@@ -134,3 +134,71 @@ async function confirmar(e) {
       }
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("formConfirmar2022")
+    .addEventListener("submit", confirmar_2022);
+});
+async function confirmar_2022(e) {
+  e.preventDefault();
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+
+  swalWithBootstrapButtons
+    .fire({
+      title: "Estas seguro que la información es la correcta?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Si, agregar confirmación",
+      cancelButtonText: "No, cancelar!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        var form = document.getElementById("formConfirmar2022");
+        const image = miCanvas.toDataURL("image/png");
+        const fd = new FormData(form);
+        fd.append("imagen", image);
+        fd.append("accion", "agregar");
+        fetch("php/confirmacion_controller.php", {
+          method: "POST",
+          body: fd,
+        })
+          .then((result) => result.text())
+          .then((result) => {
+            if (result == 1) {
+              swalWithBootstrapButtons.fire(
+                "Agregado!",
+                "La dirección ip ha sido agregado en la base de datos.",
+                "success"
+              );
+              form.reset();
+              setTimeout(function () {
+                location.reload();
+              }, 2000);
+            } else {
+              swalWithBootstrapButtons.fire(
+                "Error",
+                "Hemos tenido un error a la base de datos o la conexión.",
+                "error"
+              );
+              form.reset();
+              setTimeout(function () {
+                location.reload();
+              }, 2000);
+            }
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          "Cancelado",
+          "Revise su información de nuevo",
+          "error"
+        );
+      }
+    });
+}

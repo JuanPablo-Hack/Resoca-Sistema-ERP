@@ -21,9 +21,6 @@ function fnFormatDetails(oTable, nTr) {
 }
 
 $(document).ready(function () {
-  /*
-   * Insert a 'details' column to the table
-   */
   var nCloneTh = document.createElement("th");
   var nCloneTd = document.createElement("td");
   nCloneTd.innerHTML =
@@ -37,10 +34,6 @@ $(document).ready(function () {
   $("#hidden-table-info tbody tr").each(function () {
     this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
   });
-
-  /*
-   * Initialse DataTables, with no sorting on the 'details' column
-   */
   var oTable = $("#hidden-table-info").dataTable({
     aoColumnDefs: [
       {
@@ -48,6 +41,8 @@ $(document).ready(function () {
         aTargets: [0],
       },
     ],
+    dom: "Bfrtip",
+    buttons: ["copy", "csv", "excel", "pdf", "print"],
   });
 
   $("#hidden-table-info tbody td img").live("click", function () {

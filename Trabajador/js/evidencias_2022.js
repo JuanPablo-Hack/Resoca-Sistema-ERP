@@ -1,14 +1,3 @@
-$(document).ready(function () {
-  var oTable = $("#hidden-table-info").dataTable({
-    aoColumnDefs: [
-      {
-        bSortable: false,
-        aTargets: [0],
-      },
-    ],
-    aaSorting: [[3, "asc"]],
-  });
-});
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("CrearEvidencia")
@@ -37,7 +26,7 @@ async function crearEvidencia(e) {
       if (result.isConfirmed) {
         let data = new FormData(form);
         data.append("accion", "agregar");
-        fetch("php/evidencias_controller.php", {
+        fetch("php/evidencias_controller_2022.php", {
           method: "POST",
           body: data,
         })
