@@ -32,7 +32,8 @@ function agregar_evidencia($folio, $ticket, $fecha, $num_conceptos, $arreglo, $f
 {
     include './conexion.php';
     agregar_imagen($folio);
-    $sql = "INSERT INTO evidencias_2022 (folio,fecha,ticket, num_conceptos,arreglo, comentarios, foto) VALUES ( '$folio','$fecha','$ticket', '$num_conceptos','$arreglo', '$comentarios', '$foto');";
+    $sql = "INSERT INTO evidencias_2022 (folio,fecha,ticket, num_conceptos,arreglo, comentarios, foto) VALUES ( '$folio','$fecha
+    ','$ticket', '$num_conceptos','$arreglo', '$comentarios', '$foto');";
     $resultado = $conexion->query($sql);
     if ($resultado) {
         echo 1;
@@ -66,7 +67,7 @@ function eliminar_evidencia($id)
 
 function agregar_imagen($carpeta)
 {
-    $ruta_manifiestos = '../../evidencias/';
+    $ruta_manifiestos = '../../evidencias_2022/';
     $ruta_manifiestos_cliente = $ruta_manifiestos . $carpeta . "/";
 
     if (!file_exists($ruta_manifiestos)) {

@@ -35,7 +35,7 @@ $Row = mysqli_fetch_array(get_evidencia_2022($_GET['id_evidencia']));
                         </a>
                         <ul class="sub">
                             <li><a href="listar_orden.php">Bitacora</a></li>
-                           
+
                             <li><a href="listar_servicios.php">Lista de Servicios</a></li>
                             <li class="active"><a href="listar_evidencias.php">Lista de Evidencias</a></li>
                             <li><a href="listar_confirmaciones.php">Lista de Confirmaciones</a></li>
@@ -119,7 +119,7 @@ $Row = mysqli_fetch_array(get_evidencia_2022($_GET['id_evidencia']));
                                     <div class="col-md-9">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
                                             <div class="fileupload-new thumbnail">
-                                                <img src="../evidencias/<?php echo $Row['id'] . "/" . $Row['foto'] ?>" />
+                                                <img src="../evidencias_2022/<?php echo $Row['id'] . "/" . $Row['foto'] ?>" />
                                             </div>
                                             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 
@@ -129,32 +129,20 @@ $Row = mysqli_fetch_array(get_evidencia_2022($_GET['id_evidencia']));
                         </div>
                         </form>
                     </div>
-                    <!-- /form-panel -->
-                </div>
-                <!-- /col-lg-12 -->
                 </div>
                 </div>
-                <!-- /col-lg-12 -->
                 </div>
-                <!-- row -->
+                </div>
             </section>
-            <!-- /wrapper -->
         </section>
-        <!-- /MAIN CONTENT -->
-        <!--main content end-->
-        <!--footer start-->
         <?php include 'templates/footer.php'; ?>
-        <!--footer end-->
     </section>
-    <!-- js placed at the end of the document so the pages load faster -->
     <script src="../assets/lib/jquery/jquery.min.js"></script>
     <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="../assets/lib/jquery.dcjqaccordion.2.7.js"></script>
     <script src="../assets/lib/jquery.scrollTo.min.js"></script>
     <script src="../assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
-    <!--common script for all pages-->
     <script src="../assets/lib/common-scripts.js"></script>
-    <!--script for this page-->
     <script src="../assets/lib/jquery-ui-1.9.2.custom.min.js"></script>
     <script type="text/javascript" src="../assets/lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
     <script type="text/javascript" src="../assets/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
